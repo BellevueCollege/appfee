@@ -21,55 +21,6 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     
-    <!-- jQuery Validate -->
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-    <script type="text/javascript">
-    /**
-     * Add Middle-Endian date format to jQuery Validation
-     * (Based on dateITA format found in additional-methods.js)
-     *
-     * Return true, if the value is a valid date, also making this formal check mm/dd/yyyy.
-     *
-     * @example $.validator.methods.date("01/01/1900")
-     * @result true
-     *
-     * @example $.validator.methods.date("13/01/1990")
-     * @result false
-     *
-     * @example $.validator.methods.date("01.01.1900")
-     * @result false
-     *
-     * @example <input name="pippo" class="{dateME:true}" />
-     * @desc Declares an optional input element whose value must be a valid date.
-     *
-     * @name $.validator.methods.dateME
-     * @type Boolean
-     * @cat Plugins/Validate/Methods
-     */
-    $.validator.addMethod("dateME", function(value, element) {
-        var check = false,
-            re = /^\d{1,2}\/\d{1,2}\/\d{4}$/,
-            adata, mm, gg, aaaa, xdata;
-        if ( re.test(value)) {
-            adata = value.split("/");
-            mm = parseInt(adata[0], 10);
-            gg = parseInt(adata[1], 10);
-            aaaa = parseInt(adata[2], 10);
-            xdata = new Date(aaaa, mm - 1, gg, 12, 0, 0, 0);
-            if ( ( xdata.getUTCFullYear() === aaaa ) && ( xdata.getUTCMonth () === mm - 1 ) && ( xdata.getUTCDate() === gg ) ) {
-                check = true;
-            } else {
-                check = false;
-            }
-        } else {
-            check = false;
-        }
-        return this.optional(element) || check;
-    }, "Please enter a correct date in MM/DD/YYYY format");
-    
-    </script>
-    
-    
     <script type="text/javascript" src="<? echo $globals_url ?>j/ghead.js"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="/<? echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
@@ -137,42 +88,7 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
 									  </div>
 								</form>
 								<script>
-								$("#paymentForm").validate({								
-									rules: {
-									    inputFirstName: "required",
-									    inputLastName: "required",
-									    inputDOB: {
-									      required: true,
-									      dateME: true
-									    }
-									  },
-									  messages: {
-									    inputFirstName: "First Name is Required",
-									    inputLastName: "Last Name is Required",
-									    inputDOB: {
-									      required: "Date of Birth is Required",
-									      dateME: "Date of Birth must be in MM/DD/YYYY format"
-									    }
-									  },
-									  onfocusout: true,
-									  debug:true,
-									highlight: function(element) {
-							            $(element).closest('.form-group').addClass('has-error');
-							        },
-							        unhighlight: function(element) {
-							            $(element).closest('.form-group').removeClass('has-error');
-							        },
-							        errorElement: 'span',
-							        errorClass: 'help-block',
-							        errorPlacement: function(error, element) {
-							            if(element.parent('.input-group').length) {
-							                error.insertAfter(element.parent());
-							            } else {
-							                error.insertAfter(element);
-							            }
-							     	}
 								
-								});
 								</script>
 							
 							<!--	End Form	-->
@@ -191,6 +107,97 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
 	 
 	<script src="<? echo $globals_url ?>j/bootstrap.min.js"></script>
 	<script src="<? echo $globals_url ?>j/g.js"></script>
+    <!-- jQuery Validate -->
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        /**
+         * Add Middle-Endian date format to jQuery Validation
+         * (Based on dateITA format found in additional-methods.js)
+         *
+         * Return true, if the value is a valid date, also making this formal check mm/dd/yyyy.
+         *
+         * @example $.validator.methods.date("01/01/1900")
+         * @result true
+         *
+         * @example $.validator.methods.date("13/01/1990")
+         * @result false
+         *
+         * @example $.validator.methods.date("01.01.1900")
+         * @result false
+         *
+         * @example <input name="pippo" class="{dateME:true}" />
+         * @desc Declares an optional input element whose value must be a valid date.
+         *
+         * @name $.validator.methods.dateME
+         * @type Boolean
+         * @cat Plugins/Validate/Methods
+         */
+        $.validator.addMethod("dateME", function(value, element) {
+            var check = false,
+            re = /^\d{1,2}\/\d{1,2}\/\d{4}$/,
+            adata, mm, gg, aaaa, xdata;
+            if ( re.test(value)) {
+                adata = value.split("/");
+                mm = parseInt(adata[0], 10);
+                gg = parseInt(adata[1], 10);
+                aaaa = parseInt(adata[2], 10);
+                xdata = new Date(aaaa, mm - 1, gg, 12, 0, 0, 0);
+                if ( ( xdata.getUTCFullYear() === aaaa ) && ( xdata.getUTCMonth () === mm - 1 ) && ( xdata.getUTCDate() === gg ) ) {
+                    check = true;
+                } else {
+                    check = false;
+                }
+            } else {
+                check = false;
+            }
+            return this.optional(element) || check;
+        }, "Please enter a correct date in MM/DD/YYYY format");
+        
+        /*  Validate Form   */
+        $("#paymentForm").validate({								
+            rules: {
+                inputFirstName: "required",
+                inputLastName: "required",
+                inputDOB: {
+                  required: true,
+                  dateME: true
+                }
+              },
+              messages: {
+                inputFirstName: "First Name is Required",
+                inputLastName: "Last Name is Required",
+                inputDOB: {
+                  required: "Date of Birth is Required",
+                  dateME: "Date of Birth must be in MM/DD/YYYY format"
+                }
+              },
+            
+            /* Apply bootstrap 3 error display classes  */
+            highlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            
+         });
+     });
+
+    </script>
+    
+    
+        
+        
 	
 
 </body>
