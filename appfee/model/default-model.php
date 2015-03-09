@@ -5,31 +5,31 @@
  */
 class Default_Model {
 
-	public $html_footer_uri;
-	public $html_header_uri;
-	public $html_template_uri;
+	public $globals_path;
+	public $globals_url;
+	public $template_uri;
 
-	public function __construct( $html_template_uri,
-		$html_header_uri = NULL, $html_footer_uri = NULL
+	public function __construct( $template_uri,
+		$globals_path = NULL, $globals_url = NULL
 	) {
-		$this->html_template_uri = $html_template_uri;
-		if ( isset( $html_header_uri ) ) {
-			$this->html_header_uri = $html_header_uri;
+		$this->template_uri = $template_uri;
+		if ( isset( $globals_path ) ) {
+			$this->globals_path = $globals_path;
 		}
-		if ( isset( $html_footer_uri ) ) {
-			$this->html_footer_uri = $html_footer_uri;
+		if ( isset( $globals_url ) ) {
+			$this->globals_url = $globals_url;
 		}
 	}
 
-	public function get_html_header_uri() {
-		return $this->html_header_uri;
+	public function get_globals_path() {
+		return $this->globals_path;
 	}
 
-	public function get_html_footer_uri() {
-		return $this->html_footer_uri;
+	public function get_globals_url() {
+		return $this->globals_url;
 	}
 
 	public function get_template_uri() {
-		return $this->html_template_uri;
+		return $this->template_uri;
 	}
 }

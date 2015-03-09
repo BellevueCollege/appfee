@@ -5,8 +5,8 @@
  */
 class Default_View {
 
-	private $model;
-	private $controller;
+	public $model;
+	public $controller;
 
 	public function __construct( $controller, $model ) {
 		$this->controller = $controller;
@@ -14,8 +14,8 @@ class Default_View {
 	}
 
 	public function get_output() {
-		$header_uri = $this->model->get_html_header_uri();
-		$footer_uri = $this->model->get_html_footer_uri();
+		$globals_path = $this->model->get_globals_path();
+		$globals_url  = $this->model->get_globals_url();
 		$template_uri = $this->model->get_template_uri();
 		require_once( $template_uri );
 	}
