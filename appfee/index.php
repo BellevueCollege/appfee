@@ -15,11 +15,27 @@ $request_uri = substr( $request_uri, strlen( $base_uri ) );
 
 switch ( $request_uri ) {
 	case '/general-admissions':
-		require_once( 'model/default-model.php' );
-		require_once( 'view/default-view.php' );
-		$model = new Default_Model( 'template/test-template.php' );
+		require_once( 'model/student-info-payment-model.php' );
+		require_once( 'view/student-info-payment-view.php' );
+		$model = new Student_Info_Payment_Model(
+			'template/gen-adm-fee-template.php',
+			GLOBALS_PATH,
+			GLOBALS_URL,
+			DEFAULT_BILL_TO_ADDRESS_COUNTRY,
+			DEFAULT_BILL_TO_ADDRESS_STATE,
+			CURRENCY,
+			CYBERSOURCE_ACCESS_KEY,
+			CYBERSOURCE_LOCALE,
+			CYBERSOURCE_PROFILE_ID,
+			CYBERSOURCE_SECRET_KEY,
+			FORM_POST_URL,
+			'General Admissions Fee',
+			'1',
+			'34.00',
+			DEFAULT_TRANSACTION_TYPE
+		);
 		$controler = NULL;
-		$view = new Default_View( $controler, $model );
+		$view = new Student_Info_Payment_View( $controler, $model );
 		echo $view->get_output();
 		break;
 
