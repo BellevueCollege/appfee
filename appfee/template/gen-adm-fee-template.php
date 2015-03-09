@@ -1,8 +1,3 @@
-<?php
-//Define Globals Path
-$globals_url = "//s.bellevuecollege.edu/g/3/";
-$globals_path = "/usr/share/nginx/wordpress/g/3/";
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en-US" class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en-US" class="ie7"> <![endif]-->
@@ -56,28 +51,29 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
 		                	<!--	Begin Form	-->
 		                	
 								<form class="form-horizontal" id="paymentForm">
+                                    <input type="hidden" name="reference_number" id="reference_number" />
 									<div class="form-group">
-										<label for="inputFirstName" class="col-sm-3 control-label">First Name:*</label>
+										<label for="merchant_defined_data1" class="col-sm-3 control-label">First Name:*</label>
 										<div class="col-sm-8">
-											<input type="text" maxlength="32" class="form-control" id="inputFirstName" name="inputFirstName" aria-required="true" required />
+											<input type="text" maxlength="32" class="form-control" id="merchant_defined_data1" name="merchant_defined_data1" aria-required="true" required />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="inputMiddleName" class="col-sm-3 control-label">Middle Name:</label>
+										<label for="merchant_defined_data3" class="col-sm-3 control-label">Middle Name:</label>
 										<div class="col-sm-8">
-											<input type="text" maxlength="32" class="form-control" id="inputMiddleName" name="inputMiddleName" />
+											<input type="text" maxlength="16" class="form-control" id="merchant_defined_data3" name="merchant_defined_data3" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="inputLastName" class="col-sm-3 control-label">Last Name:*</label>
+										<label for="merchant_defined_data2" class="col-sm-3 control-label">Last Name:*</label>
 										<div class="col-sm-8">
-											<input type="text" maxlength="32" class="form-control" id="inputLastName"  name="inputLastName" aria-required="true" required />
+											<input type="text" maxlength="32" class="form-control" id="merchant_defined_data2"  name="merchant_defined_data2" aria-required="true" required />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="inputDOB" class="col-sm-3 control-label">Date of Birth:*</label>
+										<label for="merchant_secure_data1" class="col-sm-3 control-label">Date of Birth:*</label>
 										<div class="col-sm-4">
-											<input type="text" maxlength="10" class="form-control" id="inputDOB" name="inputDOB" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
+											<input type="text" maxlength="10" class="form-control" id="merchant_secure_data1" name="merchant_secure_data1" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
 											<span id="dobHelpBlock" class="help-block">Enter your Date of Birth in MM/DD/YYYY format</span>
 										</div>
 									</div>
@@ -154,20 +150,35 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
             return this.optional(element) || check;
         }, "Please enter a correct date in MM/DD/YYYY format");
         
+        $.validator.addMethod("letterswithbasicpunc", function(value, element) {
+            return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
+        }, "Letters or punctuation only please");
+        
         /*  Validate Form   */
         $("#paymentForm").validate({								
             rules: {
-                inputFirstName: "required",
-                inputLastName: "required",
-                inputDOB: {
-                  required: true,
-                  dateME: true
+                merchant_defined_data1: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                
+                merchant_defined_data2: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                merchant_defined_data3: {
+                    letterswithbasicpunc: true
+                },
+                merchant_secure_data1: {
+                    letterswithbasicpunc: true,
+                    required: true,
+                    dateME: true
                 }
               },
               messages: {
-                inputFirstName: "First Name is Required",
-                inputLastName: "Last Name is Required",
-                inputDOB: {
+                merchant_defined_data1: "First Name is Required",
+                merchant_defined_data2: "Last Name is Required",
+                merchant_secure_data1: {
                   required: "Date of Birth is Required",
                   dateME: "Date of Birth must be in MM/DD/YYYY format"
                 }
@@ -193,12 +204,7 @@ $globals_path = "/usr/share/nginx/wordpress/g/3/";
          });
      });
 
-    </script>
-    
-    
-        
-        
-	
+    </script
 
 </body>
 </html>
