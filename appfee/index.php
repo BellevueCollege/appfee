@@ -39,7 +39,7 @@ switch ( $application_uri ) {
 			CYBERSOURCE_LOCALE,
 			CYBERSOURCE_PROFILE_ID,
 			CYBERSOURCE_SECRET_KEY,
-			FORM_POST_URL,
+			CYBERSOURCE_FORM_POST_URL,
 			'General Admissions Fee',
 			'1',
 			'34.00',
