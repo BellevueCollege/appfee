@@ -44,6 +44,8 @@ class Student_Info_Payment_Model extends Default_Model {
 		$item_0_unit_price,
 		$transaction_type
 	) {
+		parent::__construct( $template_uri, $globals_path, $globals_url );
+
 		$this->bill_to_address_country = $bill_to_address_country;
 		$this->bill_to_address_state = $bill_to_address_state;
 		$this->currency = $currency;
@@ -52,8 +54,6 @@ class Student_Info_Payment_Model extends Default_Model {
 		$this->cybersource_profile_id = $cybersource_profile_id;
 		$this->cybersource_secret_key = $cybersource_secret_key;
 		$this->form_post_url = $form_post_url;
-		$this->globals_path = $globals_path;
-		$this->globals_url = $globals_url;
 		$this->item_0_name = $item_0_name;
 		$this->item_0_quantity = $item_0_quantity;
 		$this->item_0_unit_price = $item_0_unit_price;
@@ -77,7 +77,6 @@ class Student_Info_Payment_Model extends Default_Model {
 			'transaction_uuid,' .
 			'unsigned_field_names'
 		;
-		$this->template_uri = $template_uri;
 		$this->transaction_type = $transaction_type;
 		$this->transaction_uuid = uniqid();
 		$this->unsigned_field_names =
