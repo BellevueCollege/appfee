@@ -92,7 +92,7 @@
 										<label for="merchant_secure_data1" class="col-sm-3 control-label">Date of Birth:*</label>
 										<div class="col-sm-4">
 											<input type="text" maxlength="10" class="form-control" id="merchant_secure_data1" name="merchant_secure_data1" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
-											<span id="dobHelpBlock" class="help-block">Enter your Date of Birth in MM/DD/YYYY format</span>
+											<p id="dobHelpBlock" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
 										</div>
 									</div>
 									<div class="form-group">
@@ -222,7 +222,7 @@
          });
      });
 
-    </script
+    </script>
 
 </body>
 </html>
