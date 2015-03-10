@@ -27,7 +27,7 @@ class Student_Info_Payment_View extends Default_View {
 		$signed_date_time = $this->model->get_signed_date_time();
 		$signed_field_names = $this->model->get_signed_field_names();
 		$transaction_type = $this->model->get_transaction_type();
-		$transaction_type = $this->model->get_transaction_type();
+		$transaction_uuid = $this->model->get_transaction_uuid();
 		$unsigned_field_names = $this->model->get_unsigned_field_names();
 		require_once( $template_uri );
 	}
