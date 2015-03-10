@@ -51,7 +51,7 @@
 									<!--	Begin Form	-->
 
 								<form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
-								
+
 									<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
 									<input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="<?php echo $bill_to_address_country ?>" />
 									<input type="hidden" id="bill_to_address_state" name="bill_to_address_state" value="<?php echo $bill_to_address_state ?>" />
@@ -69,7 +69,7 @@
 									<input type="hidden" id="signed_date_time" name="signed_date_time" value="<?php echo $signed_date_time ?>" />
 									<input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $transaction_uuid ?>" />
 									<input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" />
-					                                    
+
 									<div class="form-group">
 										<label for="merchant_defined_data1" class="col-sm-3 control-label">First Name:*</label>
 										<div class="col-sm-8">
@@ -167,7 +167,7 @@
             }
             return this.optional(element) || check;
         }, "Please enter a correct date in MM/DD/YYYY format");
-		
+
 		/* Add Letters + Basic Punctuation method from additional-methods.js */
         $.validator.addMethod("letterswithbasicpunc", function(value, element) {
             return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);

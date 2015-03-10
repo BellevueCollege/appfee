@@ -18,7 +18,7 @@ switch ( $request_uri ) {
 		require_once( 'model/student-info-payment-model.php' );
 		require_once( 'view/student-info-payment-view.php' );
 		$model = new Student_Info_Payment_Model(
-			'template/gen-adm-fee-template.php',
+			'template/general-admissions-fee-to-cybersource-template.php',
 			GLOBALS_PATH,
 			GLOBALS_URL,
 			DEFAULT_BILL_TO_ADDRESS_COUNTRY,
