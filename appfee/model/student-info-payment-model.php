@@ -83,7 +83,7 @@ class Student_Info_Payment_Model extends Default_Model {
 			'merchant_defined_data1,' .
 			'merchant_defined_data2,' .
 			'merchant_defined_data3,' .
-			'merchant_secure_data1'
+			'merchant_defined_data4'
 		;
 
 		$this->generate_signature();
