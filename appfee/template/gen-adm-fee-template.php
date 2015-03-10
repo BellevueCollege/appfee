@@ -10,46 +10,46 @@
 	<title>Pay Application Fees @ Bellevue College</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<? echo $globals_url ?>c/g.css">
     <link rel="stylesheet" media="print" href="<? echo $globals_url ?>c/p.css">
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    
+
     <script type="text/javascript" src="<? echo $globals_url ?>j/ghead.js"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="/<? echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
 
 	<? require($globals_path."h/gabranded.html"); ?>
-	  
+
 	<!-- parentid= 0-->
 </head>
 
 <body class="nav-enrollment">
 
-	<? require($globals_path."h/bhead.html"); ?>         
-	
+	<? require($globals_path."h/bhead.html"); ?>
+
 		<div id="main-wrap" class="globals-branded">
 			<div id="main" class="container no-padding">
 				<div class="content-padding">
 					<div id="site-header">
-					
+
 						<h1 class="site-title">Application Fee Payment</h1>
-					
-					</div><!-- container header --> 
+
+					</div><!-- container header -->
 				</div><!-- content-padding -->
 				<div class="row">
 					<div class="col-md-12">
 						<div id="content"  class="box-shadow">
 							<div class="row row-padding">
 								<div class="content-padding">
-								
-				            </div><!--.content-padding-->
-		                	<div class="content-padding">
-		                	<p class="lead">Please enter your name and date of birth below. Required Fields marked with *.</p>
-		                	
-		                	<!--	Begin Form	-->
-		                	
+
+								</div><!--.content-padding-->
+								<div class="content-padding">
+									<p class="lead">Please enter your name and date of birth below. Required Fields marked with *.</p>
+
+									<!--	Begin Form	-->
+
 								<form class="form-horizontal" id="paymentForm">
                                     <input type="hidden" name="reference_number" id="reference_number" />
 									<div class="form-group">
@@ -84,11 +84,11 @@
 									  </div>
 								</form>
 								<script>
-								
+
 								</script>
-							
+
 							<!--	End Form	-->
-							
+
 			                </div> <!--.content-padding-->
 						</div><!--.row-padding-->
 					</div><!-- #content-->
@@ -97,10 +97,10 @@
 		</div><!-- #main .container -->
 	</div><!-- #main-wrap -->
 
-	<? require($globals_path."h/bfoot.html"); ?> 
-	<? require($globals_path."h/legal.html"); ?>  
+	<? require($globals_path."h/bfoot.html"); ?>
+	<? require($globals_path."h/legal.html"); ?>
 
-	 
+
 	<script src="<? echo $globals_url ?>j/bootstrap.min.js"></script>
 	<script src="<? echo $globals_url ?>j/g.js"></script>
     <!-- jQuery Validate -->
@@ -149,19 +149,19 @@
             }
             return this.optional(element) || check;
         }, "Please enter a correct date in MM/DD/YYYY format");
-        
+
         $.validator.addMethod("letterswithbasicpunc", function(value, element) {
             return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
         }, "Letters or punctuation only please");
-        
+
         /*  Validate Form   */
-        $("#paymentForm").validate({								
+        $("#paymentForm").validate({
             rules: {
                 merchant_defined_data1: {
                     required: true,
                     letterswithbasicpunc: true
                 },
-                
+
                 merchant_defined_data2: {
                     required: true,
                     letterswithbasicpunc: true
@@ -183,7 +183,7 @@
                   dateME: "Date of Birth must be in MM/DD/YYYY format"
                 }
               },
-            
+
             /* Apply bootstrap 3 error display classes  */
             highlight: function(element) {
                 $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -200,7 +200,7 @@
                     error.insertAfter(element);
                 }
             }
-            
+
          });
      });
 
