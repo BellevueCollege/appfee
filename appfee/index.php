@@ -6,15 +6,26 @@
 
 require_once( 'configuration.php' );
 
-/** @var string Contains BASE_URI constant without trailing slashes */
-$base_uri = rtrim( BASE_URI, '/' );
+/** @var string Contains HTTP_HOST eliment from the $_SERVER array */
+$request_host = $_SERVER['HTTP_HOST'];
 
 /** @var string Contains REQUEST_URI eliment from the $_SERVER array */
 $request_uri = $_SERVER['REQUEST_URI'];
-$request_uri = substr( $request_uri, strlen( $base_uri ) );
 
-switch ( $request_uri ) {
-	case '/general-admissions':
+/** @var string Contains BASE_URI constant without trailing slashes */
+$base_uri = rtrim( BASE_URI, '/' );
+
+// Redirect to HTTPS
+if ( ! isset( $_SERVER['HTTPS'] ) ) {
+	$url = 'https://' . $request_host . $request_uri;
+	header( 'HTTP/1.1 301 Moved Permanently' );
+	header( 'Location: ' . $url );
+	exit();
+}
+
+$application_uri = substr( $request_uri, strlen( $base_uri ) );
+switch ( $application_uri ) {
+	case 'general-admissions':
 		require_once( 'model/student-info-payment-model.php' );
 		require_once( 'view/student-info-payment-view.php' );
 		$model = new Student_Info_Payment_Model(
@@ -40,5 +51,5 @@ switch ( $request_uri ) {
 		break;
 
 	default:
-		echo $request_uri;
+		echo $application_uri;
 }
