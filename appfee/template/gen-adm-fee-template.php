@@ -188,7 +188,6 @@
                     letterswithbasicpunc: true
                 },
                 merchant_secure_data1: {
-                    letterswithbasicpunc: true,
                     required: true,
                     dateME: true
                 }
