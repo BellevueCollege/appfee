@@ -74,15 +74,16 @@ class Student_Info_Payment_Model extends Default_Model {
 			'signed_date_time,' .
 			'signed_field_names,' .
 			'transaction_type,' .
-			'transaction_uuid' .
-			'unsigned_field_names,'
+			'transaction_uuid,' .
+			'unsigned_field_names'
 		;
 		$this->template_uri = $template_uri;
 		$this->transaction_type = $transaction_type;
 		$this->transaction_uuid = uniqid();
-		$this->unsigned_field_names = 'merchant_defined_data1,' .
-			'merchant_defined_data2' .
-			'merchant_defined_data3' .
+		$this->unsigned_field_names =
+			'merchant_defined_data1,' .
+			'merchant_defined_data2,' .
+			'merchant_defined_data3,' .
 			'merchant_secure_data1'
 		;
 
