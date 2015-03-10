@@ -11,23 +11,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<? echo $globals_url ?>c/g.css">
-    <link rel="stylesheet" media="print" href="<? echo $globals_url ?>c/p.css">
+    <link rel="stylesheet" href="<?php echo $globals_url ?>c/g.css">
+    <link rel="stylesheet" media="print" href="<?php echo $globals_url ?>c/p.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-    <script type="text/javascript" src="<? echo $globals_url ?>j/ghead.js"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="/<? echo $globals_url ?>j/respond.js"></script><![endif]-->
+    <script type="text/javascript" src="<?php echo $globals_url ?>j/ghead.js"></script>
+    <!--[if lt IE 9]><script type="text/javascript" src="/<?php echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
 
-	<? require($globals_path."h/gabranded.html"); ?>
+	<?php require($globals_path."h/gabranded.html"); ?>
 
 	<!-- parentid= 0-->
 </head>
 
 <body class="nav-enrollment">
 
-	<? require($globals_path."h/bhead.html"); ?>
+	<?php require($globals_path."h/bhead.html"); ?>
 
 		<div id="main-wrap" class="globals-branded">
 			<div id="main" class="container no-padding">
@@ -50,8 +50,25 @@
 
 									<!--	Begin Form	-->
 
-								<form class="form-horizontal" id="paymentForm">
-                                    <input type="hidden" name="reference_number" id="reference_number" />
+								<form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
+								
+									<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
+									<input type="hidden" id="bill_to_address_state" name="<?php echo $bill_to_address_country ?>" value="wa" />
+									<input type="hidden" id="currency" name="currency" value="<?php echo $currency ?>" />
+									<input type="hidden" id="item_0_name" name="item_0_name" value="<?php echo $item_0_name ?>" />
+									<input type="hidden" id="item_0_quantity" name="item_0_quantity" value="<?php echo $item_0_quantity ?>" />
+									<input type="hidden" id="item_0_unit_price" name="item_0_unit_price" value="<?php echo $item_0_unit_price ?>" />
+									<input type="hidden" id="line_item_count" name="line_item_count" value="<?php echo $line_item_count ?>" />
+									<input type="hidden" id="locale" name="locale" value="<?php echo $cybersource_locale ?>" />
+									<input type="hidden" id="profile_id" name="profile_id" value="<?php echo $cybersource_profile_id ?>" />
+									<input type="hidden" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" />
+									<input type="hidden" id="transaction_type" name="transaction_type" value="<?php echo $transaction_type ?>" />
+									<input type="hidden" id="unsigned_field_names" name="unsigned_field_names" value="<?php echo $unsigned_field_names ?>" />
+									<input type="hidden" id="reference_number" name="reference_number" value="<?php echo $reference_number ?>" />
+									<input type="hidden" id="signed_date_time" name="signed_date_time" value="<?php echo $signed_date_time ?>" />
+									<input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $transaction_uuid ?>" />
+									<input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" />
+					                                    
 									<div class="form-group">
 										<label for="merchant_defined_data1" class="col-sm-3 control-label">First Name:*</label>
 										<div class="col-sm-8">
@@ -79,7 +96,7 @@
 									</div>
 									<div class="form-group">
 									    <div class="col-sm-offset-3 col-sm-8">
-									      <button type="submit" class="btn btn-primary">Continue</button>
+									      <button type="submit" id="submit" class="btn btn-primary">Continue</button>
 									    </div>
 									  </div>
 								</form>
@@ -97,12 +114,12 @@
 		</div><!-- #main .container -->
 	</div><!-- #main-wrap -->
 
-	<? require($globals_path."h/bfoot.html"); ?>
-	<? require($globals_path."h/legal.html"); ?>
+	<?php require($globals_path."h/bfoot.html"); ?>
+	<?php require($globals_path."h/legal.html"); ?>
 
 
-	<script src="<? echo $globals_url ?>j/bootstrap.min.js"></script>
-	<script src="<? echo $globals_url ?>j/g.js"></script>
+	<script src="<?php echo $globals_url ?>j/bootstrap.min.js"></script>
+	<script src="<?php echo $globals_url ?>j/g.js"></script>
     <!-- jQuery Validate -->
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
     <script type="text/javascript">
@@ -149,13 +166,14 @@
             }
             return this.optional(element) || check;
         }, "Please enter a correct date in MM/DD/YYYY format");
-
+		
+		/* Add Letters + Basic Punctuation method from additional-methods.js */
         $.validator.addMethod("letterswithbasicpunc", function(value, element) {
             return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
         }, "Letters or punctuation only please");
 
         /*  Validate Form   */
-        $("#paymentForm").validate({
+        $("#payment_confirmation").validate({
             rules: {
                 merchant_defined_data1: {
                     required: true,
