@@ -59,7 +59,8 @@ class Student_Info_Payment_Model extends Default_Model {
 		$this->item_0_unit_price = $item_0_unit_price;
 		$this->line_item_count = '1';
 		$this->reference_number = microtime( true );
-		$this->signed_field_names = 'access_key,' .
+		$this->signed_field_names =
+			'access_key,' .
 			'bill_to_address_country,' .
 			'bill_to_address_state,' .
 			'currency,' .
@@ -69,12 +70,12 @@ class Student_Info_Payment_Model extends Default_Model {
 			'line_item_count,' .
 			'locale,' .
 			'profile_id,' .
-			'signed_field_names,' .
-			'transaction_type,' .
-			'unsigned_field_names,' .
 			'reference_number,' .
 			'signed_date_time,' .
-			'transaction_uuid'
+			'signed_field_names,' .
+			'transaction_type,' .
+			'transaction_uuid' .
+			'unsigned_field_names,'
 		;
 		$this->template_uri = $template_uri;
 		$this->transaction_type = $transaction_type;
@@ -84,6 +85,45 @@ class Student_Info_Payment_Model extends Default_Model {
 			'merchant_defined_data3' .
 			'merchant_secure_data1'
 		;
+
+		$this->generate_signature();
+	}
+
+	public function generate_signature() {
+		$this->generate_signed_date_time();
+
+		$data_to_sign = array(
+			'access_key=' . $this->cybersource_access_key,
+			'bill_to_address_country=' . $this->bill_to_address_country,
+			'bill_to_address_state=' . $this->bill_to_address_state,
+			'currency=' . $this->currency,
+			'item_0_name=' . $this->item_0_name,
+			'item_0_quantity=' . $this->item_0_quantity,
+			'item_0_unit_price=' . $this->item_0_unit_price,
+			'line_item_count=' . $this->line_item_count,
+			'locale=' . $this->cybersource_locale,
+			'profile_id=' . $this->cybersource_profile_id,
+			'reference_number=' . $this->reference_number,
+			'signed_date_time=' . $this->signed_date_time,
+			'signed_field_names=' . $this->signed_field_names,
+			'transaction_type=' . $this->transaction_type,
+			'transaction_uuid=' . $this->transaction_uuid,
+			'unsigned_field_names=' . $this->unsigned_field_names,
+		);
+
+		$data_to_sign_string = implode( ',', $data_to_sign );
+		$hash = hash_hmac(
+			'sha256',
+			$data_to_sign_string,
+			$this->cybersource_secret_key,
+			true
+		);
+		$this->signature = base64_encode( $hash );
+	}
+
+	public function generate_signed_date_time() {
+		$this->signed_date_time = gmdate( 'Y-m-d\TH:i:s\Z' );
+		return $this->signed_date_time;
 	}
 
 	public function get_bill_to_address_country() {
