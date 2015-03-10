@@ -32,6 +32,7 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
 	exit();
 }
 
+/** @var string Contains $request_uri minus $base_uri  */
 $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
 	case '/general-admissions':
