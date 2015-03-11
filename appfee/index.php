@@ -63,5 +63,14 @@ switch ( $application_uri ) {
 		break;
 
 	default:
-		echo $application_uri;
+		require_once( 'model/default-model.php' );
+		require_once( 'view/default-view.php' );
+		$model = new Default_Model(
+			'template/error-404-template.php',
+			GLOBALS_PATH,
+			GLOBALS_URL
+		);
+		$view = new Default_View( NULL, $model );
+		header( 'HTTP/1.1 404 Not Found' );
+		echo $view->get_output();
 }
