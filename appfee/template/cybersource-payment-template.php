@@ -8,6 +8,8 @@
 		<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
 		<input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="<?php echo $bill_to_address_country ?>" />
 		<input type="hidden" id="bill_to_address_state" name="bill_to_address_state" value="<?php echo $bill_to_address_state ?>" />
+		<input type="hidden" id="bill_to_forename" name="bill_to_forename" value="<?php echo $student_first_name ?>" />
+		<input type="hidden" id="bill_to_surname" name="bill_to_surname" value="<?php echo $student_last_name ?>" />
 		<input type="hidden" id="currency" name="currency" value="<?php echo $currency ?>" />
 		<input type="hidden" id="item_0_name" name="item_0_name" value="<?php echo $item_0_name ?>" />
 		<input type="hidden" id="item_0_quantity" name="item_0_quantity" value="<?php echo $item_0_quantity ?>" />
