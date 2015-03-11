@@ -72,9 +72,9 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="merchant_secure_data1" class="col-sm-3 control-label">Student Date of Birth:*</label>
+											<label for="merchant_defined_data4" class="col-sm-3 control-label">Student Date of Birth:*</label>
 											<div class="col-sm-4">
-												<input type="text" maxlength="10" class="form-control" id="merchant_secure_data1" name="merchant_secure_data1" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
+												<input type="text" maxlength="10" class="form-control" id="merchant_defined_data4" name="merchant_defined_data4" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
 												<p id="dobHelpBlock" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
 											</div>
 										</div>
@@ -166,7 +166,7 @@
                 merchant_defined_data3: {
                     letterswithbasicpunc: true
                 },
-                merchant_secure_data1: {
+                merchant_defined_data4: {
                     required: true,
                     dateME: true
                 }
@@ -174,7 +174,7 @@
               messages: {
                 merchant_defined_data1: "First Name is Required",
                 merchant_defined_data2: "Last Name is Required",
-                merchant_secure_data1: {
+                merchant_defined_data4: {
                   required: "Date of Birth is Required",
                   dateME: "Date of Birth must be in MM/DD/YYYY format"
                 }
