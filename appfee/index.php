@@ -6,7 +6,7 @@
 
 require_once( 'configuration.php' );
 
-define( 'VERSION_NUMBER', '0.1.0.0' );
+define( 'VERSION_NUMBER', '0.1.0.1' );
 
 /** @var string Contains HTTP_HOST eliment from the $_SERVER array */
 $request_host = $_SERVER['HTTP_HOST'];
