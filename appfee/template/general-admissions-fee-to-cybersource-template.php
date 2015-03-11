@@ -34,7 +34,7 @@
 				<div class="content-padding">
 					<div id="site-header">
 
-						<h1 class="site-title">Application Fee Payment</h1>
+						<h1 class="site-title">Admissions</h1>
 
 					</div><!-- container header -->
 				</div><!-- content-padding -->
@@ -46,7 +46,9 @@
 
 								</div><!--.content-padding-->
 								<div class="content-padding">
-									<p class="lead">Please enter your name and date of birth below. Required Fields marked with *.</p>
+                                    <h2>Application Fee Payment Form</h2>
+									<p class="lead">Thank you for your application to Bellevue College! Please provide the information below so that we can link your payment to your application.</p>
+                                    <p>Required fields marked with *</p>
 
 									<!--	Begin Form	-->
 
