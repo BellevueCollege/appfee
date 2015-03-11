@@ -61,9 +61,14 @@
 										</div>
 										<div class="form-group">
 											<label for="merchant_defined_data3" class="col-sm-3 control-label">Student Middle Name:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-5">
 												<input type="text" maxlength="16" class="form-control" id="merchant_defined_data3" name="merchant_defined_data3" />
 											</div>
+											<dir class="col-sm-3 checkbox">
+											<label>
+											    <input id="no-mn" type="checkbox"> No Middle Name
+										    </label>
+											</dir>
 										</div>
 										<div class="form-group">
 											<label for="merchant_defined_data2" class="col-sm-3 control-label">Student Last Name:*</label>
@@ -164,6 +169,7 @@
                     letterswithbasicpunc: true
                 },
                 merchant_defined_data3: {
+                	required: '#no-mn:unchecked',
                     letterswithbasicpunc: true
                 },
                 merchant_defined_data4: {
@@ -198,6 +204,20 @@
             }
 
          });
+         
+         $('#no-mn').change(function() {
+         	if (!$("#merchant_defined_data3").attr("disabled")) {
+		    	$("#merchant_defined_data3").attr("disabled", true);
+		    } else {
+		    	$("#merchant_defined_data3").attr("disabled", false);
+		    }
+		});
+		$('#merchant_defined_data3').keyup(function() {
+         	if ($("#merchant_defined_data3").val()) {
+		    	$("#no-mn").parent().hide();
+		    } else {
+		    	$("#no-mn").parent().show();		    }
+		});
      });
 
     </script>
