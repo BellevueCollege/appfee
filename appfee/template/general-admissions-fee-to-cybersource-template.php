@@ -19,98 +19,74 @@
     <script type="text/javascript" src="<?php echo $globals_url ?>j/ghead.js"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="/<?php echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
-
 	<?php require($globals_path."h/gabranded.html"); ?>
-
-	<!-- parentid= 0-->
 </head>
 
 <body class="nav-enrollment">
-
 	<?php require($globals_path."h/bhead.html"); ?>
-
 		<div id="main-wrap" class="globals-branded">
 			<div id="main" class="container no-padding">
-				<div class="content-padding">
-					<div id="site-header">
-
-						<h1 class="site-title">Admissions</h1>
-
-					</div><!-- container header -->
-				</div><!-- content-padding -->
 				<div class="row">
 					<div class="col-md-12">
-						<div id="content"  class="box-shadow">
+						<div class="box-shadow" id="content">
 							<div class="row row-padding">
 								<div class="content-padding">
-
-								</div><!--.content-padding-->
-								<div class="content-padding">
-                                    <h2>Application Fee Payment Form</h2>
-									<p class="lead">Thank you for your application to Bellevue College! Please provide the information below so that we can link your payment to your application.</p>
-                                    <p>Required fields marked with *</p>
-
-									<!--	Begin Form	-->
-
-								<form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
-
-									<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
-									<input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="<?php echo $bill_to_address_country ?>" />
-									<input type="hidden" id="bill_to_address_state" name="bill_to_address_state" value="<?php echo $bill_to_address_state ?>" />
-									<input type="hidden" id="currency" name="currency" value="<?php echo $currency ?>" />
-									<input type="hidden" id="item_0_name" name="item_0_name" value="<?php echo $item_0_name ?>" />
-									<input type="hidden" id="item_0_quantity" name="item_0_quantity" value="<?php echo $item_0_quantity ?>" />
-									<input type="hidden" id="item_0_unit_price" name="item_0_unit_price" value="<?php echo $item_0_unit_price ?>" />
-									<input type="hidden" id="line_item_count" name="line_item_count" value="<?php echo $line_item_count ?>" />
-									<input type="hidden" id="locale" name="locale" value="<?php echo $cybersource_locale ?>" />
-									<input type="hidden" id="profile_id" name="profile_id" value="<?php echo $cybersource_profile_id ?>" />
-									<input type="hidden" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" />
-									<input type="hidden" id="transaction_type" name="transaction_type" value="<?php echo $transaction_type ?>" />
-									<input type="hidden" id="unsigned_field_names" name="unsigned_field_names" value="<?php echo $unsigned_field_names ?>" />
-									<input type="hidden" id="reference_number" name="reference_number" value="<?php echo $reference_number ?>" />
-									<input type="hidden" id="signed_date_time" name="signed_date_time" value="<?php echo $signed_date_time ?>" />
-									<input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $transaction_uuid ?>" />
-									<input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" />
-
-									<div class="form-group">
-										<label for="merchant_defined_data1" class="col-sm-3 control-label">First Name:*</label>
-										<div class="col-sm-8">
-											<input type="text" maxlength="32" class="form-control" id="merchant_defined_data1" name="merchant_defined_data1" aria-required="true" required />
+									<p class='entry-title'>&nbsp;</p>
+		                            <h1>Application Fee Payment Form</h1>
+									<p class="lead">Thank you for your application to Bellevue College! Please provide the information below so that we can link your payment to your application. Required fields marked with *</p>
+		     
+									<form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
+										<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
+										<input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="<?php echo $bill_to_address_country ?>" />
+										<input type="hidden" id="bill_to_address_state" name="bill_to_address_state" value="<?php echo $bill_to_address_state ?>" />
+										<input type="hidden" id="currency" name="currency" value="<?php echo $currency ?>" />
+										<input type="hidden" id="item_0_name" name="item_0_name" value="<?php echo $item_0_name ?>" />
+										<input type="hidden" id="item_0_quantity" name="item_0_quantity" value="<?php echo $item_0_quantity ?>" />
+										<input type="hidden" id="item_0_unit_price" name="item_0_unit_price" value="<?php echo $item_0_unit_price ?>" />
+										<input type="hidden" id="line_item_count" name="line_item_count" value="<?php echo $line_item_count ?>" />
+										<input type="hidden" id="locale" name="locale" value="<?php echo $cybersource_locale ?>" />
+										<input type="hidden" id="profile_id" name="profile_id" value="<?php echo $cybersource_profile_id ?>" />
+										<input type="hidden" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" />
+										<input type="hidden" id="transaction_type" name="transaction_type" value="<?php echo $transaction_type ?>" />
+										<input type="hidden" id="unsigned_field_names" name="unsigned_field_names" value="<?php echo $unsigned_field_names ?>" />
+										<input type="hidden" id="reference_number" name="reference_number" value="<?php echo $reference_number ?>" />
+										<input type="hidden" id="signed_date_time" name="signed_date_time" value="<?php echo $signed_date_time ?>" />
+										<input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $transaction_uuid ?>" />
+										<input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" />
+										<div class="form-group">
+											<label for="merchant_defined_data1" class="col-sm-3 control-label">Student First Name:*</label>
+											<div class="col-sm-8">
+												<input type="text" maxlength="32" class="form-control" id="merchant_defined_data1" name="merchant_defined_data1" aria-required="true" required />
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label for="merchant_defined_data3" class="col-sm-3 control-label">Middle Name:</label>
-										<div class="col-sm-8">
-											<input type="text" maxlength="16" class="form-control" id="merchant_defined_data3" name="merchant_defined_data3" />
+										<div class="form-group">
+											<label for="merchant_defined_data3" class="col-sm-3 control-label">Student Middle Name:</label>
+											<div class="col-sm-8">
+												<input type="text" maxlength="16" class="form-control" id="merchant_defined_data3" name="merchant_defined_data3" />
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label for="merchant_defined_data2" class="col-sm-3 control-label">Last Name:*</label>
-										<div class="col-sm-8">
-											<input type="text" maxlength="32" class="form-control" id="merchant_defined_data2"  name="merchant_defined_data2" aria-required="true" required />
+										<div class="form-group">
+											<label for="merchant_defined_data2" class="col-sm-3 control-label">Student Last Name:*</label>
+											<div class="col-sm-8">
+												<input type="text" maxlength="32" class="form-control" id="merchant_defined_data2"  name="merchant_defined_data2" aria-required="true" required />
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label for="merchant_secure_data1" class="col-sm-3 control-label">Date of Birth:*</label>
-										<div class="col-sm-4">
-											<input type="text" maxlength="10" class="form-control" id="merchant_defined_data4" name="merchant_defined_data4" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
-											<p id="dobHelpBlock" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
+										<div class="form-group">
+											<label for="merchant_secure_data1" class="col-sm-3 control-label">Student Date of Birth:*</label>
+											<div class="col-sm-4">
+												<input type="text" maxlength="10" class="form-control" id="merchant_secure_data1" name="merchant_secure_data1" placeholder="mm/dd/yyyy" aria-required="true" aria-describedby="dobHelpBlock" required />
+												<p id="dobHelpBlock" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-									    <div class="col-sm-offset-3 col-sm-8">
-									      <button type="submit" id="submit" class="btn btn-primary">Continue</button>
-									    </div>
-									  </div>
-								</form>
-								<script>
-
-								</script>
-
-							<!--	End Form	-->
-
-			                </div> <!--.content-padding-->
-						</div><!--.row-padding-->
+										<div class="form-group">
+										    <div class="col-sm-offset-3 col-sm-8">
+										      <button type="submit" id="submit" class="btn btn-primary">Continue</button>
+										    </div>
+										  </div>
+									</form>
+									<small class="pull-right">&copy; <?php echo date("Y"); ?> - Application Fee <?php echo VERSION_NUMBER ?></small>
+								</div>
+							</div>
 					</div><!-- #content-->
 				</div><!-- row -->
 			</div><!-- col-md-12 -->
@@ -225,6 +201,5 @@
      });
 
     </script>
-
 </body>
 </html>
