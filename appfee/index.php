@@ -38,10 +38,31 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
 $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
 	case 'general-admissions':
-		require_once( 'model/student-info-payment-model.php' );
-		require_once( 'view/student-info-payment-view.php' );
-		$model = new Student_Info_Payment_Model(
-			'template/general-admissions-fee-to-cybersource-template.php',
+		require_once( 'model/student-name-dob-model.php' );
+		require_once( 'view/student-name-dob-view.php' );
+		$post_url =
+			'https://' .
+			$request_host .
+			$base_uri .
+			'general-admissions/save'
+		;
+		$model = new Student_Name_DOB_Model(
+			'template/student-name-dob-template.php',
+			GLOBALS_PATH,
+			GLOBALS_URL,
+			$post_url
+		);
+		$controler = NULL;
+		$view = new Student_Name_DOB_View( $controler, $model );
+		echo $view->get_output();
+		break;
+
+	case 'general-admissions/save':
+		require_once( 'model/cybersource-payment-model.php' );
+		require_once( 'controller/cybersource-payment-controller.php' );
+		require_once( 'view/cybersource-payment-view.php' );
+		$model = new Cybersource_Payment_Model(
+			'template/cybersource-payment-template.php',
 			GLOBALS_PATH,
 			GLOBALS_URL,
 			DEFAULT_BILL_TO_ADDRESS_COUNTRY,
@@ -52,13 +73,14 @@ switch ( $application_uri ) {
 			CYBERSOURCE_PROFILE_ID,
 			CYBERSOURCE_SECRET_KEY,
 			CYBERSOURCE_FORM_POST_URL,
-			'General Admissions Fee',
+			GENERAL_ADMISSIONS_ITEM_DESCRIPTION,
 			'1',
-			'34.00',
+			GENERAL_ADMISSIONS_FEE,
 			DEFAULT_TRANSACTION_TYPE
 		);
-		$controler = NULL;
-		$view = new Student_Info_Payment_View( $controler, $model );
+		$controller = new Cybersource_Payment_Controller( $model );
+		$view = new Cybersource_Payment_View( $controller, $model );
+		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;
 
