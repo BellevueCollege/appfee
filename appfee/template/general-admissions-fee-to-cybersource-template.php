@@ -84,7 +84,7 @@
 										    </div>
 										  </div>
 									</form>
-									<small class="pull-right">&copy; <?php echo date("Y"); ?> - Application Fee <?php echo VERSION_NUMBER ?></small>
+									<small class="pull-right">Application Fee <?php echo VERSION_NUMBER ?></small>
 								</div>
 							</div>
 					</div><!-- #content-->

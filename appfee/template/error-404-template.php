@@ -52,7 +52,7 @@
                                     <li class="four">Use some of the links on this page.</li>
                                     <li class="five">Click the <a href="javascript:history.go(-1)">Back</a> button and try another link.</li>
                                 </ol>
-                                <small class="pull-right">&copy; <?php echo date("Y"); ?> - Application Fee <?php echo VERSION_NUMBER ?></small>
+                                <small class="pull-right">Application Fee <?php echo VERSION_NUMBER ?></small>
                             </div> <!--.content-padding-->
 				        </div><!--.row-padding-->
                     </div><!-- #content-->
