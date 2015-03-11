@@ -14,8 +14,8 @@ $request_host = $_SERVER['HTTP_HOST'];
 /** @var string Contains REQUEST_URI eliment from the $_SERVER array */
 $request_uri = $_SERVER['REQUEST_URI'];
 
-/** @var string Contains BASE_URI constant without trailing slashes */
-$base_uri = rtrim( BASE_URI, '/' );
+/** @var string Contains BASE_URI constant */
+$base_uri = rtrim( BASE_URI, '/' ) . '/';
 
 // Check to make sure we are hosted out of the correct directory
 if ( $base_uri !== substr( $request_uri, 0, strlen( $base_uri ) ) ) {
@@ -37,7 +37,7 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
 /** @var string Contains $request_uri minus $base_uri  */
 $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
-	case '/general-admissions':
+	case 'general-admissions':
 		require_once( 'model/student-info-payment-model.php' );
 		require_once( 'view/student-info-payment-view.php' );
 		$model = new Student_Info_Payment_Model(
