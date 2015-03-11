@@ -20,6 +20,10 @@ define( 'DEFAULT_BILL_TO_ADDRESS_STATE', '' );
 
 define( 'DEFAULT_TRANSACTION_TYPE', '' );
 
+define( 'GENERAL_ADMISSIONS_FEE', '' );
+
+define( 'GENERAL_ADMISSIONS_ITEM_DESCRIPTION', '' );
+
 define( 'GLOBALS_PATH', '' );
 
 define( 'GLOBALS_URL', '' );
