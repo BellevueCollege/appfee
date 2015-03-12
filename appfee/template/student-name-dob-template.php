@@ -100,48 +100,12 @@
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            /**
-             * Add Middle-Endian date format to jQuery Validation
-             * (Based on dateITA format found in additional-methods.js)
-             *
-             * Return true, if the value is a valid date, also making this formal check mm/dd/yyyy.
-             *
-             * @example $.validator.methods.date("01/01/1900")
-             * @result true
-             *
-             * @example $.validator.methods.date("13/01/1990")
-             * @result false
-             *
-             * @example $.validator.methods.date("01.01.1900")
-             * @result false
-             *
-             * @example <input name="pippo" class="{dateME:true}" />
-             * @desc Declares an optional input element whose value must be a valid date.
-             *
-             * @name $.validator.methods.dateME
-             * @type Boolean
-             * @cat Plugins/Validate/Methods
-             */
-            $.validator.addMethod("dateME", function (value, element) {
-                var check = false,
-                    re = /^\d{1,2}\/\d{1,2}\/\d{4}$/,
-                    adata, mm, gg, aaaa, xdata;
-                if (re.test(value)) {
-                    adata = value.split("/");
-                    mm = parseInt(adata[0], 10);
-                    gg = parseInt(adata[1], 10);
-                    aaaa = parseInt(adata[2], 10);
-                    xdata = new Date(aaaa, mm - 1, gg, 12, 0, 0, 0);
-                    if ((xdata.getUTCFullYear() === aaaa) && (xdata.getUTCMonth() === mm - 1) && (xdata.getUTCDate() === gg)) {
-                        check = true;
-                    } else {
-                        check = false;
-                    }
-                } else {
-                    check = false;
-                }
-                return this.optional(element) || check;
-            }, "Please enter a correct date in MM/DD/YYYY format");
+
+            /*	Date of Birth Validation -- Middle-Endian. Date of birth must be after 1900	*/
+            $.validator.addMethod("dobME", function (value, element) {
+                return this.optional(element) || /^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/((19|[2-9][0-9])[0-9]{2})$/.test(value);
+            }, "Please enter date of birth in MM/DD/YYYY format");
+
 
             /* Add Letters + Basic Punctuation method from additional-methods.js */
             $.validator.addMethod("letterswithbasicpunc", function (value, element) {
@@ -175,7 +139,7 @@
                     middle_name: "Please Provide your Middle Name or Check \"No Middle Name\"",
                     date_of_birth: {
                         required: "Date of Birth is Required",
-                        dateME: "Date of Birth must be in MM/DD/YYYY format"
+                        dobME: "Date of Birth must be in MM/DD/YYYY format"
                     }
                 },
 
