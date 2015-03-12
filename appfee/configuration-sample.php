@@ -35,3 +35,5 @@ define( 'GENERAL_ADMISSIONS_ITEM_DESCRIPTION', '' );
 define( 'GLOBALS_PATH', '' );
 
 define( 'GLOBALS_URL', '' );
+
+define( 'TIMEZONE', '' );
