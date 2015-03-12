@@ -12,7 +12,10 @@ class Cybersource_Payment_Controller extends Default_Controller {
 		$date_of_birth = $post_array['date_of_birth'];
 		$first_name = $post_array['first_name'];
 		$last_name = $post_array['last_name'];
-		$middle_name = $post_array['middle_name'];
+		$middle_name = NULL;
+		if ( isset( $post_array['middle_name'] ) ) {
+			$middle_name = $post_array['middle_name'];
+		}
 
 		$this->model->set_student_date_of_birth( $date_of_birth );
 		$this->model->set_student_first_name( $first_name );
