@@ -19,7 +19,7 @@ class Cybersource_Payment_Controller extends Default_Controller {
 		$this->model->set_student_last_name( $last_name );
 		$this->model->set_student_middle_name( $middle_name );
 
-		$this->model->set_signature();
+		$this->model->save_data();
 
 		return True;
 	}

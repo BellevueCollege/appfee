@@ -14,6 +14,14 @@ define( 'CYBERSOURCE_PROFILE_ID', '' );
 
 define( 'CYBERSOURCE_SECRET_KEY', '' );
 
+define( 'DATABASE_DSN', '' );
+
+define( 'DATABASE_USER', '' );
+
+define( 'DATABASE_PASSWORD', '' );
+
+define( 'DATABASE_TABLE', '' );
+
 define( 'DEFAULT_BILL_TO_ADDRESS_COUNTRY', '' );
 
 define( 'DEFAULT_BILL_TO_ADDRESS_STATE', '' );

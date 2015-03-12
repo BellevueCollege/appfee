@@ -14,6 +14,8 @@ class Cybersource_Payment_Model extends Default_Model {
 	public $cybersource_locale;
 	public $cybersource_profile_id;
 	public $cybersource_secret_key;
+	public $database_connection;
+	public $database_table;
 	public $form_post_url;
 	public $item_0_name;
 	public $item_0_quantity;
@@ -35,6 +37,10 @@ class Cybersource_Payment_Model extends Default_Model {
 		$template_uri,
 		$globals_path,
 		$globals_url,
+		$database_dsn,
+		$database_username,
+		$database_password,
+		$database_table,
 		$bill_to_address_country,
 		$bill_to_address_state,
 		$currency,
@@ -50,6 +56,12 @@ class Cybersource_Payment_Model extends Default_Model {
 	) {
 		parent::__construct( $template_uri, $globals_path, $globals_url );
 
+		$this->database_connection = new PDO(
+			$database_dsn,
+			$database_username,
+			$database_password
+		);
+
 		$this->bill_to_address_country = $bill_to_address_country;
 		$this->bill_to_address_state = $bill_to_address_state;
 		$this->currency = $currency;
@@ -57,12 +69,12 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->cybersource_locale = $cybersource_locale;
 		$this->cybersource_profile_id = $cybersource_profile_id;
 		$this->cybersource_secret_key = $cybersource_secret_key;
+		$this->database_table = $database_table;
 		$this->form_post_url = $form_post_url;
 		$this->item_0_name = $item_0_name;
 		$this->item_0_quantity = $item_0_quantity;
 		$this->item_0_unit_price = $item_0_unit_price;
 		$this->line_item_count = '1';
-		$this->reference_number = microtime( true );
 		$this->signed_field_names =
 			'access_key,' .
 			'bill_to_address_country,' .
@@ -180,6 +192,38 @@ class Cybersource_Payment_Model extends Default_Model {
 
 	public function get_unsigned_field_names() {
 		return $this->unsigned_field_names;
+	}
+
+	public function save_data() {
+		$tsql =
+			'INSERT INTO ' . $this->database_table . ' ' .
+			'OUTPUT INSERTED.ReferenceNumber ' .
+			'VALUES (' .
+				':first_name, ' .
+				':last_name, ' .
+				':middle_name, ' .
+				':date_of_birth, ' .
+				':amount, ' .
+				':program_of_study, ' .
+				':time_stamp' .
+			');'
+		;
+		$query = $this->database_connection->prepare( $tsql );
+
+		$values = array(
+			':first_name'       => $this->student_first_name,
+			':last_name'        => $this->student_last_name,
+			':middle_name'      => $this->student_middle_name,
+			':date_of_birth'    => $this->student_date_of_birth,
+			':amount'           => $this->item_0_unit_price,
+			':program_of_study' => NULL,
+			':time_stamp'       => $this->signed_date_time,
+		);
+
+		$query->execute( $values );
+		$result_array = $query->fetch();
+		$this->reference_number = $result_array['ReferenceNumber'];
+		$this->set_signature();
 	}
 
 	public function set_signature() {
