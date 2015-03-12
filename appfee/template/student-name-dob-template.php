@@ -74,7 +74,7 @@
                                     </div>
                                 </form>
                                 <!--	End Form	-->
-
+                                <small class="pull-right">Application Fee <?php echo VERSION_NUMBER ?></small>
                             </div>
                             <!--.content-padding-->
                         </div>
