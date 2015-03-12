@@ -36,7 +36,7 @@
                                 <h1>Application Fee Payment Form</h1>
                                 <p class="lead">Thank you for your application to Bellevue College! Please provide the information below so that we can link your payment to your application. Required fields marked with *</p>
                                 <form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
-
+                                    <input type="hidden" id="form_url" name="form_url" value="<?php echo $current_url  ?>" />
                                     <div class="form-group">
                                         <label for="first_name" class="col-sm-3 control-label">Student First Name:*</label>
                                         <div class="col-sm-8">
