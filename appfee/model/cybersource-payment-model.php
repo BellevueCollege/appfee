@@ -91,50 +91,7 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->transaction_uuid = uniqid();
 		$this->unsigned_field_names = '';
 
-		$this->generate_signature();
-	}
-
-	public function generate_signature() {
-		$this->generate_signed_date_time();
-
-		$data_to_sign = array(
-			'access_key=' . $this->cybersource_access_key,
-			'bill_to_address_country=' . $this->bill_to_address_country,
-			'bill_to_address_state=' . $this->bill_to_address_state,
-			'bill_to_forename=' . $this->student_first_name,
-			'bill_to_surname=' . $this->student_last_name,
-			'currency=' . $this->currency,
-			'item_0_name=' . $this->item_0_name,
-			'item_0_quantity=' . $this->item_0_quantity,
-			'item_0_unit_price=' . $this->item_0_unit_price,
-			'line_item_count=' . $this->line_item_count,
-			'locale=' . $this->cybersource_locale,
-			'merchant_defined_data1=' . $this->student_first_name,
-			'merchant_defined_data2=' . $this->student_last_name,
-			'merchant_defined_data3=' . $this->student_middle_name,
-			'merchant_defined_data4=' . $this->student_date_of_birth,
-			'profile_id=' . $this->cybersource_profile_id,
-			'reference_number=' . $this->reference_number,
-			'signed_date_time=' . $this->signed_date_time,
-			'signed_field_names=' . $this->signed_field_names,
-			'transaction_type=' . $this->transaction_type,
-			'transaction_uuid=' . $this->transaction_uuid,
-			'unsigned_field_names=' . $this->unsigned_field_names,
-		);
-
-		$data_to_sign_string = implode( ',', $data_to_sign );
-		$hash = hash_hmac(
-			'sha256',
-			$data_to_sign_string,
-			$this->cybersource_secret_key,
-			true
-		);
-		$this->signature = base64_encode( $hash );
-	}
-
-	public function generate_signed_date_time() {
-		$this->signed_date_time = gmdate( 'Y-m-d\TH:i:s\Z' );
-		return $this->signed_date_time;
+		$this->set_signature();
 	}
 
 	public function get_bill_to_address_country() {
@@ -223,5 +180,64 @@ class Cybersource_Payment_Model extends Default_Model {
 
 	public function get_unsigned_field_names() {
 		return $this->unsigned_field_names;
+	}
+
+	public function set_signature() {
+		$this->set_signed_date_time();
+
+		$data_to_sign = array(
+			'access_key=' . $this->cybersource_access_key,
+			'bill_to_address_country=' . $this->bill_to_address_country,
+			'bill_to_address_state=' . $this->bill_to_address_state,
+			'bill_to_forename=' . $this->student_first_name,
+			'bill_to_surname=' . $this->student_last_name,
+			'currency=' . $this->currency,
+			'item_0_name=' . $this->item_0_name,
+			'item_0_quantity=' . $this->item_0_quantity,
+			'item_0_unit_price=' . $this->item_0_unit_price,
+			'line_item_count=' . $this->line_item_count,
+			'locale=' . $this->cybersource_locale,
+			'merchant_defined_data1=' . $this->student_first_name,
+			'merchant_defined_data2=' . $this->student_last_name,
+			'merchant_defined_data3=' . $this->student_middle_name,
+			'merchant_defined_data4=' . $this->student_date_of_birth,
+			'profile_id=' . $this->cybersource_profile_id,
+			'reference_number=' . $this->reference_number,
+			'signed_date_time=' . $this->signed_date_time,
+			'signed_field_names=' . $this->signed_field_names,
+			'transaction_type=' . $this->transaction_type,
+			'transaction_uuid=' . $this->transaction_uuid,
+			'unsigned_field_names=' . $this->unsigned_field_names,
+		);
+
+		$data_to_sign_string = implode( ',', $data_to_sign );
+		$hash = hash_hmac(
+			'sha256',
+			$data_to_sign_string,
+			$this->cybersource_secret_key,
+			true
+		);
+		$this->signature = base64_encode( $hash );
+	}
+
+	public function set_signed_date_time() {
+		$this->signed_date_time = gmdate( 'Y-m-d\TH:i:s\Z' );
+		return $this->signed_date_time;
+	}
+
+	public function set_student_date_of_birth( $student_date_of_birth ) {
+		$this->student_date_of_birth = $student_date_of_birth;
+	}
+
+	public function set_student_first_name( $student_first_name ) {
+		$this->student_first_name = $student_first_name;
+	}
+
+	public function set_student_last_name( $student_last_name ) {
+		$this->student_last_name = $student_last_name;
+	}
+
+	public function set_student_middle_name( $student_middle_name ) {
+		$this->student_middle_name = $student_middle_name;
 	}
 }
