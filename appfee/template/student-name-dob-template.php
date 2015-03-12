@@ -198,22 +198,34 @@
 
             });
 
-            //  Disable Middle Name field if No Middle Name is checked
-            $('#no_middle_name').change(function () {
-                if (!$("#middle_name").attr("disabled")) {
-                    $("#middle_name").attr("disabled", true);
-                } else {
-                    $("#middle_name").attr("disabled", false);
-                }
-            });
-            //  Hide checkbox if Middle Name field has content
-            $('#middle_name').keyup(function () {
-                if ($("#middle_name").val()) {
-                    $("#no_middle_name").parent().hide();
-                } else {
-                    $("#no_middle_name").parent().show();
-                }
-            });
+
+        });
+
+        // Functions to allow Middle Name toggle
+        function checkAllowBlank(should_disable, field_id) {
+            if (!field_id.attr("disabled") && should_disable.prop('checked')) {
+                field_id.attr("disabled", true);
+            } else {
+                field_id.attr("disabled", false);
+            }
+        };
+
+        function fieldContentCheck(text_element, toggle_element) {
+            if (text_element.val()) {
+                toggle_element.parent().hide();
+            } else {
+                toggle_element.parent().show();
+            }
+        };
+
+        // Check Field Status when things change
+        $('#no_middle_name').change(function () {
+            checkAllowBlank($(this), $('#middle_name'))
+
+        });
+
+        $('#middle_name').keyup(function () {
+            fieldContentCheck($(this), $('#no_middle_name'))
         });
     </script>
 </body>
