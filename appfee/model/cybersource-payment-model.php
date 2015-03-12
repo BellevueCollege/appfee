@@ -217,11 +217,19 @@ class Cybersource_Payment_Model extends Default_Model {
 			':date_of_birth'    => $this->student_date_of_birth,
 			':amount'           => $this->item_0_unit_price,
 			':program_of_study' => NULL,
-			':time_stamp'       => $this->signed_date_time,
+			':time_stamp'       => date( 'Y-m-d\TH:i:s' ),
 		);
 
 		$query->execute( $values );
 		$result_array = $query->fetch();
+		if ( ! isset( $result_array['ReferenceNumber'] )
+			|| ! ctype_digit( $result_array['ReferenceNumber'] )
+		) {
+			$error_message =
+				'Invalid reference number received from the database'
+			;
+			throw new Exception( $error_message );
+		}
 		$this->reference_number = $result_array['ReferenceNumber'];
 		$this->set_signature();
 	}
