@@ -75,6 +75,7 @@ class Cybersource_Payment_Controller extends Default_Controller {
 			$this->model->set_template_uri(
 				'template/blank-page-template.php'
 			);
+			return false;
 		}
 
 		$middle_name = NULL;
