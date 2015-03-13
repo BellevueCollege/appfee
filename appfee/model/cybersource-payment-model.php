@@ -10,6 +10,7 @@ class Cybersource_Payment_Model extends Default_Model {
 	public $bill_to_address_country;
 	public $bill_to_address_state;
 	public $currency;
+	public $customer_ip_address;
 	public $cybersource_access_key;
 	public $cybersource_locale;
 	public $cybersource_profile_id;
@@ -70,6 +71,7 @@ class Cybersource_Payment_Model extends Default_Model {
 			'bill_to_forename' => &$this->student_first_name,
 			'bill_to_surname' => &$this->student_last_name,
 			'currency' => &$this->currency,
+			'customer_ip_address' => &$this->customer_ip_address,
 			'item_0_name' => &$this->item_0_name,
 			'item_0_quantity' => &$this->item_0_quantity,
 			'item_0_unit_price' => &$this->item_0_unit_price,
@@ -91,6 +93,7 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->bill_to_address_country = $bill_to_address_country;
 		$this->bill_to_address_state = $bill_to_address_state;
 		$this->currency = $currency;
+		$this->customer_ip_address = $this->get_customer_ip_address();
 		$this->cybersource_access_key = $cybersource_access_key;
 		$this->cybersource_locale = $cybersource_locale;
 		$this->cybersource_profile_id = $cybersource_profile_id;
@@ -118,6 +121,10 @@ class Cybersource_Payment_Model extends Default_Model {
 
 	public function get_bill_to_address_state() {
 		return $this->bill_to_address_state;
+	}
+
+	public function get_customer_ip_address() {
+		return $_SERVER['REMOTE_ADDR'];
 	}
 
 	public function get_currency() {

@@ -12,6 +12,7 @@ class Cybersource_Payment_View extends Default_View {
 		$bill_to_address_state = $this->model->get_bill_to_address_state();
 		$currency = $this->model->get_currency();
 		$current_url = $this->model->get_current_url();
+		$customer_ip_address = $this->model->get_customer_ip_address();
 		$cybersource_access_key = $this->model->get_cybersource_access_key();
 		$cybersource_locale = $this->model->get_cybersource_locale();
 		$cybersource_profile_id = $this->model->get_cybersource_profile_id();

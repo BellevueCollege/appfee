@@ -49,6 +49,7 @@
                                     <input type="hidden" id="bill_to_forename" name="bill_to_forename" value="<?php echo $student_first_name ?>" />
                                     <input type="hidden" id="bill_to_surname" name="bill_to_surname" value="<?php echo $student_last_name ?>" />
                                     <input type="hidden" id="currency" name="currency" value="<?php echo $currency ?>" />
+                                    <input type="hidden" id="customer_ip_address" name="customer_ip_address" value="<?php echo $customer_ip_address ?>" />
                                     <input type="hidden" id="item_0_name" name="item_0_name" value="<?php echo $item_0_name ?>" />
                                     <input type="hidden" id="item_0_quantity" name="item_0_quantity" value="<?php echo $item_0_quantity ?>" />
                                     <input type="hidden" id="item_0_unit_price" name="item_0_unit_price" value="<?php echo $item_0_unit_price ?>" />
