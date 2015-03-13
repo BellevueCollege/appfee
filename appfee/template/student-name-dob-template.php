@@ -67,6 +67,8 @@
                                             <p id="dob_help_block" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
                                         </div>
                                     </div>
+                                    <label for="no_fill" class="sr-only"  aria-hidden="true">If you are human, leave this field blank!</label>
+                                    <input type="text" maxlength="10" class="sr-only" id="no_fill" name="no_fill" aria-hidden="true" tabindex="-1"/>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-8">
                                             <button type="submit" id="submit" class="btn btn-primary">Continue</button>
