@@ -14,12 +14,26 @@ define( 'CYBERSOURCE_PROFILE_ID', '' );
 
 define( 'CYBERSOURCE_SECRET_KEY', '' );
 
+define( 'DATABASE_DSN', '' );
+
+define( 'DATABASE_USER', '' );
+
+define( 'DATABASE_PASSWORD', '' );
+
+define( 'DATABASE_TABLE', '' );
+
 define( 'DEFAULT_BILL_TO_ADDRESS_COUNTRY', '' );
 
 define( 'DEFAULT_BILL_TO_ADDRESS_STATE', '' );
 
 define( 'DEFAULT_TRANSACTION_TYPE', '' );
 
+define( 'GENERAL_ADMISSIONS_FEE', '' );
+
+define( 'GENERAL_ADMISSIONS_ITEM_DESCRIPTION', '' );
+
 define( 'GLOBALS_PATH', '' );
 
 define( 'GLOBALS_URL', '' );
+
+define( 'TIMEZONE', '' );
