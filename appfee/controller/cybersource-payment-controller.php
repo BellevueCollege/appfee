@@ -51,17 +51,21 @@ class Cybersource_Payment_Controller extends Default_Controller {
 	}
 
 	public function save_data( $post_array ) {
-		// Set initial variables
 		$data_not_valid = false;
+		$honey_pot_field = 'no_fill';
 
 		/*
 		 * Check that all required form fields were posted. On failure load a
 		 * blank page because someone is likely tampering with the form.
+		 * Otherwise set initial variables.
 		 */
 		if ( isset( $post_array['form_url'] )
 			&& isset( $post_array['date_of_birth'] )
 			&& isset( $post_array['first_name'] )
 			&& isset( $post_array['last_name'] )
+			&& ( array_key_exists( $honey_pot_field, $post_array )
+				&& ! isset ( $post_array[ $honey_pot_field ] )
+			)
 		) {
 			$form_url = $post_array['form_url'];
 			$date_of_birth = $post_array['date_of_birth'];
