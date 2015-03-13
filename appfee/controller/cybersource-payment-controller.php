@@ -59,12 +59,12 @@ class Cybersource_Payment_Controller extends Default_Controller {
 		 * blank page because someone is likely tampering with the form.
 		 * Otherwise set initial variables.
 		 */
-		if ( isset( $post_array['form_url'] )
-			&& isset( $post_array['date_of_birth'] )
-			&& isset( $post_array['first_name'] )
-			&& isset( $post_array['last_name'] )
+		if ( ! empty( $post_array['form_url'] )
+			&& ! empty( $post_array['date_of_birth'] )
+			&& ! empty( $post_array['first_name'] )
+			&& ! empty( $post_array['last_name'] )
 			&& ( array_key_exists( $honey_pot_field, $post_array )
-				&& ! isset ( $post_array[ $honey_pot_field ] )
+				&& empty( $post_array[ $honey_pot_field ] )
 			)
 		) {
 			$form_url = $post_array['form_url'];
@@ -79,7 +79,7 @@ class Cybersource_Payment_Controller extends Default_Controller {
 		}
 
 		$middle_name = NULL;
-		if ( isset( $post_array['middle_name'] ) ) {
+		if ( ! empty( $post_array['middle_name'] ) ) {
 			$middle_name = $post_array['middle_name'];
 		}
 
