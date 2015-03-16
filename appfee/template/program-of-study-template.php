@@ -47,8 +47,12 @@
                                 <p class='entry-title'>&nbsp;</p>
                                 <h1>Program of Study Declaration</h1>
                                 <p class="lead">Let us know your plans! Please use the form below to select your program of study.</p>
-                                <form id="student_intent" name="student_intent" method="post">
-                                    <!-- There should be more hidden fields that pass through information from previous forms -->
+                                <form id="student_intent" name="student_intent" action="<?php echo $form_post_url ?>" method="post">
+                                    <input type="hidden" id="form_url" name="form_url" value="<?php echo $current_url  ?>" />
+                                    <input type="hidden" id="first_name" name="first_name" value="<?php echo $student_first_name ?>" />
+                                    <input type="hidden" id="last_name" name="last_name" value="<?php echo $student_last_name ?>" />
+                                    <input type="hidden" id="middle_name" name="middle_name" value="<?php echo $student_middle_name ?>" />
+                                    <input type="hidden" id="date_of_birth" name="date_of_birth" value="<?php echo $student_date_of_birth ?>" />
                                     <div class="row">
                                         <div class="col-sm-10 col-sm-offset-1 form-group">
                                             <p class="radio-heading" id="complete_degree_heading">Are you planning to complete a degree or certificate at Bellevue College?</p>
@@ -202,6 +206,8 @@
                                             </div>
                                         </div><!-- .col -->
                                     </div><!-- .row -->
+                                    <label for="no_fill" class="sr-only" aria-hidden="true">If you are human, leave this field blank!</label>
+                                    <input type="text" maxlength="10" class="sr-only" id="no_fill" name="no_fill" aria-hidden="true" tabindex="-1" />
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <input type="button" class="btn btn-link pull-right" value="Go Back" onclick="history.back(-1)" />
