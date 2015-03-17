@@ -25,14 +25,20 @@ class Cybersource_Payment_Controller extends Default_Controller {
 	public function is_valid_date_of_birth( $date_of_birth ) {
 		$is_valid_date = preg_match(
 			$this->regex_date_of_birth,
-			$date_of_birth
+			$date_of_birth,
+			$matches
 		);
 		if ( ! $is_valid_date ) {
 			return false;
 		}
 
+		$year = $matches[3];
+		$month = $matches[1];
+		$day = $matches[2];
 		$date_of_birth_integer = strtotime( $date_of_birth );
-		if ( $date_of_birth_integer > time() ) {
+		if ( $date_of_birth_integer > time()
+			|| ! checkdate( $month, $day, $year )
+		) {
 			return false;
 		}
 
