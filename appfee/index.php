@@ -6,7 +6,7 @@
 
 require_once( 'configuration.php' );
 
-define( 'VERSION_NUMBER', '0.2.0.0' );
+define( 'VERSION_NUMBER', '0.2.0.1' );
 
 date_default_timezone_set( TIMEZONE );
 
