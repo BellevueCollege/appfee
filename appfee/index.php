@@ -4,7 +4,7 @@
  * This is where URL mapping to backend code happens
  */
 
-require_once( 'configuration.php' );
+require( 'configuration.php' );
 
 define( 'VERSION_NUMBER', '0.3.0.0' );
 
@@ -40,8 +40,8 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
 $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
 	case 'general-admissions':
-		require_once( 'model/student-name-dob-model.php' );
-		require_once( 'view/student-name-dob-view.php' );
+		require( 'model/student-name-dob-model.php' );
+		require( 'view/student-name-dob-view.php' );
 		$post_url = 'https://'
 			. $request_host
 			. $base_uri
@@ -59,9 +59,9 @@ switch ( $application_uri ) {
 		break;
 
 	case 'general-admissions/program-of-study':
-		require_once( 'model/program-of-study-model.php' );
-		require_once( 'controller/program-of-study-controller.php' );
-		require_once( 'view/program-of-study-view.php' );
+		require( 'model/program-of-study-model.php' );
+		require( 'controller/program-of-study-controller.php' );
+		require( 'view/program-of-study-view.php' );
 		$post_url = 'https://'
 			. $request_host
 			. $base_uri
@@ -80,9 +80,9 @@ switch ( $application_uri ) {
 		break;
 
 	case 'general-admissions/save':
-		require_once( 'model/cybersource-payment-model.php' );
-		require_once( 'controller/cybersource-payment-controller.php' );
-		require_once( 'view/cybersource-payment-view.php' );
+		require( 'model/cybersource-payment-model.php' );
+		require( 'controller/cybersource-payment-controller.php' );
+		require( 'view/cybersource-payment-view.php' );
 		$model = new Cybersource_Payment_Model(
 			'template/cybersource-payment-template.php',
 			GLOBALS_PATH,
@@ -111,8 +111,8 @@ switch ( $application_uri ) {
 		break;
 
 	default:
-		require_once( 'model/default-model.php' );
-		require_once( 'view/default-view.php' );
+		require( 'model/default-model.php' );
+		require( 'view/default-view.php' );
 		$model = new Default_Model(
 			'template/error-404-template.php',
 			GLOBALS_PATH,
