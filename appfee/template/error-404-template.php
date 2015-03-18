@@ -19,10 +19,10 @@
     <script type="text/javascript" src="<?php echo $globals_url ?>j/ghead.js"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="/<?php echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
-	<?php require($globals_path."h/gabranded.html"); ?>
+	<?php require( $globals_path . 'h/gabranded.html' ); ?>
 </head>
 <body class="nav-enrollment">
-	<?php require($globals_path."h/bhead.html"); ?>
+	<?php require( $globals_path . 'h/bhead.html' ); ?>
     <div id="main-wrap" class="globals-branded">
         <div id="main" class="container no-padding">
             <div class="row">
@@ -61,8 +61,8 @@
 		</div><!-- #main .container -->
     </div><!-- #main-wrap -->
 
-    <?php require($globals_path."h/bfoot.html"); ?>
-    <?php require($globals_path."h/legal.html"); ?>
+    <?php require( $globals_path . 'h/bfoot.html' ); ?>
+    <?php require( $globals_path . 'h/legal.html' ); ?>
 
 	<script src="<?php echo $globals_url ?>j/bootstrap.min.js"></script>
 	<script src="<?php echo $globals_url ?>j/g.js"></script>
