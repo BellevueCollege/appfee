@@ -31,7 +31,7 @@ if ( $base_uri !== substr( $request_uri, 0, strlen( $base_uri ) ) ) {
 // Redirect to HTTPS
 if ( ! isset( $_SERVER['HTTPS'] ) ) {
 	$url = 'https://' . $request_host . $request_uri;
-	header( 'HTTP/1.1 301 Moved Permanently' );
+	header( $_SERVER['SERVER_PROTOCOL'] . ' Moved Permanently' );
 	header( 'Location: ' . $url );
 	exit();
 }
@@ -119,6 +119,6 @@ switch ( $application_uri ) {
 			GLOBALS_URL
 		);
 		$view = new Default_View( NULL, $model );
-		header( 'HTTP/1.1 404 Not Found' );
+		header( $_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found' );
 		echo $view->get_output();
 }
