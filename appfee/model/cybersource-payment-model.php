@@ -113,8 +113,6 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->transaction_type = $transaction_type;
 		$this->transaction_uuid = uniqid();
 		$this->unsigned_field_names = '';
-
-		$this->set_signature();
 	}
 
 	public function get_bill_to_address_country() {
@@ -249,7 +247,6 @@ class Cybersource_Payment_Model extends Default_Model {
 			throw new Exception( $error_message );
 		}
 		$this->reference_number = $result_array['ReferenceNumber'];
-		$this->set_signature();
 	}
 
 	public function set_program_of_study( $program_of_study ) {
