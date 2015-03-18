@@ -6,7 +6,7 @@
 
 require_once( 'configuration.php' );
 
-define( 'VERSION_NUMBER', '0.2.0.1' );
+define( 'VERSION_NUMBER', '0.3.0.0' );
 
 date_default_timezone_set( TIMEZONE );
 
@@ -46,7 +46,7 @@ switch ( $application_uri ) {
 			'https://' .
 			$request_host .
 			$base_uri .
-			'general-admissions/save'
+			'general-admissions/program-of-study'
 		;
 		$model = new Student_Name_DOB_Model(
 			'template/student-name-dob-template.php',
@@ -56,6 +56,27 @@ switch ( $application_uri ) {
 		);
 		$controler = NULL;
 		$view = new Student_Name_DOB_View( $controler, $model );
+		echo $view->get_output();
+		break;
+
+	case 'general-admissions/program-of-study':
+		require_once( 'model/program-of-study-model.php' );
+		require_once( 'controller/program-of-study-controller.php' );
+		require_once( 'view/program-of-study-view.php' );
+		$post_url = 'https://'
+			. $request_host
+			. $base_uri
+			. 'general-admissions/save'
+		;
+		$model = new Program_Of_Study_Model(
+			'template/program-of-study-template.php',
+			GLOBALS_PATH,
+			GLOBALS_URL,
+			$post_url
+		);
+		$controller = new Program_Of_Study_Controller( $model );
+		$view = new Program_Of_Study_View( $controller, $model );
+		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;
 

@@ -23,6 +23,7 @@ class Cybersource_Payment_Model extends Default_Model {
 	public $item_0_quantity;
 	public $item_0_unit_price;
 	public $line_item_count;
+	public $program_of_study;
 	public $reference_number;
 	public $signature;
 	public $signed_date_time;
@@ -81,6 +82,7 @@ class Cybersource_Payment_Model extends Default_Model {
 			'merchant_defined_data2' => &$this->student_last_name,
 			'merchant_defined_data3' => &$this->student_middle_name,
 			'merchant_defined_data4' => &$this->student_date_of_birth,
+			'merchant_defined_data5' => &$this->program_of_study,
 			'profile_id' => &$this->cybersource_profile_id,
 			'reference_number' => &$this->reference_number,
 			'signed_date_time' => &$this->signed_date_time,
@@ -163,6 +165,10 @@ class Cybersource_Payment_Model extends Default_Model {
 		return $this->line_item_count;
 	}
 
+	public function get_program_of_study() {
+		return $this->program_of_study;
+	}
+
 	public function get_reference_number() {
 		return $this->reference_number;
 	}
@@ -229,7 +235,7 @@ class Cybersource_Payment_Model extends Default_Model {
 			':middle_name'      => $this->student_middle_name,
 			':date_of_birth'    => $this->student_date_of_birth,
 			':amount'           => $this->item_0_unit_price,
-			':program_of_study' => NULL,
+			':program_of_study' => $this->program_of_study,
 			':time_stamp'       => date( 'Y-m-d\TH:i:s' ),
 		);
 
@@ -245,6 +251,10 @@ class Cybersource_Payment_Model extends Default_Model {
 		}
 		$this->reference_number = $result_array['ReferenceNumber'];
 		$this->set_signature();
+	}
+
+	public function set_program_of_study( $program_of_study ) {
+		$this->program_of_study = $program_of_study;
 	}
 
 	public function set_signature() {

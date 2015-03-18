@@ -24,8 +24,9 @@ class Cybersource_Payment_View extends Default_View {
 		$item_0_quantity = $this->model->get_item_0_quantity();
 		$item_0_unit_price = $this->model->get_item_0_unit_price();
 		$line_item_count = $this->model->get_line_item_count();
-		$reference_number = $this->model->get_reference_number();
+		$program_of_study = $this->model->get_program_of_study();
 		$redirect_url = $this->model->get_redirect_url();
+		$reference_number = $this->model->get_reference_number();
 		$signature = $this->model->get_signature();
 		$signed_date_time = $this->model->get_signed_date_time();
 		$signed_field_names = $this->model->get_signed_field_names();
