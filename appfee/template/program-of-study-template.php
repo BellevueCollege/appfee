@@ -16,6 +16,7 @@
     <link rel="stylesheet" media="print" href="<?php echo $globals_url ?>c/p.css">
     <style type="text/css">
         /*  Page Specific Styles  */
+
         .conditional-group {
             display: none;
             border-left: 2px solid #000;
@@ -32,11 +33,11 @@
     <script type="text/javascript" src="<?php echo $globals_url ?>j/ghead.js"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="/<?php echo $globals_url ?>j/respond.js"></script><![endif]-->
     <link rel='stylesheet' id='open-sans-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
-    <?php require($globals_path. "h/gabranded.html"); ?>
+    <?php include( $globals_path . 'h/gabranded.html' ); ?>
 </head>
 
 <body class="nav-enrollment">
-    <?php require($globals_path. "h/bhead.html"); ?>
+    <?php require( $globals_path . 'h/bhead.html' ); ?>
     <div id="main-wrap" class="globals-branded">
         <div id="main" class="container no-padding">
             <div class="row">
@@ -61,7 +62,8 @@
                                                     <label>
                                                         <input type="radio" name="taking_degree" value="yes" aria-describedby="complete_degree_heading" required> Yes
                                                     </label>
-                                                </div><!-- .radio -->
+                                                </div>
+                                                <!-- .radio -->
 
                                                 <div class="conditional-group form-group">
                                                     <p class="radio-heading" id="which_degree_heading">Which Type of Degree?</p>
@@ -69,14 +71,16 @@
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree</label>
-                                                        </div><!-- .radio -->
+                                                        </div>
+                                                        <!-- .radio -->
                                                     </div>
                                                     <div class="input-container">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="what_degree" id="what_degree_proftech" value="proftech" aria-describedby="which_degree_heading" aria-required="true" required> Professional Technical Degree
                                                             </label>
-                                                        </div><!-- .radio -->
+                                                        </div>
+                                                        <!-- .radio -->
 
                                                         <div class="conditional-group form-group" id="proftech_type">
                                                             <label class="sr-only" for="proftech_type">Select a Professional Technical Degree:</label>
@@ -175,10 +179,14 @@
                                                                 <option value="358D">Vascular Interventional Program - 24 Credit Certificate Program </option>
                                                                 <option value="169D">Wilderness Skills - 18 Credit Certificate Program (Limited or No Financial Aid) </option>
                                                             </select>
-                                                        </div><!-- .conditional-group #proftech_type -->
-                                                    </div><!-- .input-container -->
-                                                </div><!-- .conditional-group -->
-                                            </div><!-- .input-container -->
+                                                        </div>
+                                                        <!-- .conditional-group #proftech_type -->
+                                                    </div>
+                                                    <!-- .input-container -->
+                                                </div>
+                                                <!-- .conditional-group -->
+                                            </div>
+                                            <!-- .input-container -->
                                             <div class="input-container">
                                                 <div class="radio">
                                                     <label>
@@ -202,10 +210,13 @@
                                                             <input type="radio" name="no_degree" id="no_degree_undc" value="UNDC" aria-describedby="no_degree_heading" aria-required="true" required> Undecided
                                                         </label>
                                                     </div>
-                                                </div><!-- .conditional-group -->
+                                                </div>
+                                                <!-- .conditional-group -->
                                             </div>
-                                        </div><!-- .col -->
-                                    </div><!-- .row -->
+                                        </div>
+                                        <!-- .col -->
+                                    </div>
+                                    <!-- .row -->
                                     <label for="no_fill" class="sr-only" aria-hidden="true">If you are human, leave this field blank!</label>
                                     <input type="text" maxlength="10" class="sr-only" id="no_fill" name="no_fill" aria-hidden="true" tabindex="-1" />
                                     <div class="row">
@@ -216,18 +227,26 @@
                                             <button type="submit" id="submit_btn" class="btn btn-success">Continue</button>
                                         </div>
                                     </div>
-                                </div><!-- .row -->
+                            </div>
+                            <!-- .row -->
                             &nbsp;
-                            </form><!--.content-padding-->
-                        </div><!--.row-padding-->
-                    </div><!-- #content-->
-                </div><!-- row -->
-            </div><!-- col-md-12 -->
-        </div><!-- #main .container -->
-    </div><!-- #main-wrap -->
+                            </form>
+                            <!--.content-padding-->
+                        </div>
+                        <!--.row-padding-->
+                    </div>
+                    <!-- #content-->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- col-md-12 -->
+        </div>
+        <!-- #main .container -->
+    </div>
+    <!-- #main-wrap -->
 
-    <?php require($globals_path. "h/bfoot.html"); ?>
-    <?php require($globals_path. "h/legal.html"); ?>
+    <?php include( $globals_path . 'h/bfoot.html' ); ?>
+    <?php include( $globals_path . 'h/legal.html' ); ?>
 
     <script src="<?php echo $globals_url ?>j/bootstrap.min.js"></script>
     <script src="<?php echo $globals_url ?>j/g.js"></script>
@@ -237,7 +256,7 @@
 
     <script type="text/javascript">
         jQuery.extend(jQuery.validator.messages, {
-            required: "Please Select an Option"
+            required: 'Please Select an Option'
         });
         $(document).ready(function () {
 
@@ -263,7 +282,7 @@
             });
 
             // Validate Form
-            $("#student_intent").validate({
+            $('#student_intent').validate({
 
                 // Apply bootstrap 3 error display classes
                 highlight: function (element) {
@@ -288,4 +307,5 @@
         });
     </script>
 </body>
+
 </html>
