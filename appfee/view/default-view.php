@@ -20,6 +20,6 @@ class Default_View {
 		$globals_url  = $this->model->get_globals_url();
 		$redirect_url = $this->model->get_redirect_url();
 		$template_uri = $this->model->get_template_uri();
-		require_once( $template_uri );
+		require( $template_uri );
 	}
 }

@@ -38,6 +38,6 @@ class Cybersource_Payment_View extends Default_View {
 		$transaction_type = $this->model->get_transaction_type();
 		$transaction_uuid = $this->model->get_transaction_uuid();
 		$unsigned_field_names = $this->model->get_unsigned_field_names();
-		require_once( $template_uri );
+		require( $template_uri );
 	}
 }
