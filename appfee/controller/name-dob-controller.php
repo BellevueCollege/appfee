@@ -14,10 +14,9 @@ class Name_DOB_Controller extends Default_Controller {
 	public function __construct( $model ) {
 		parent::__construct( $model );
 
-		$this->regex_date_of_birth =
-			'/^(0?[1-9]|1[0-2])\/' .
-			'(0?[1-9]|[1-2][0-9]|3[0-1])\/' .
-			'((19|[2-9][0-9])[0-9]{2})$/'
+		$this->regex_date_of_birth = '/^(0?[1-9]|1[0-2])\/'
+			. '(0?[1-9]|[1-2][0-9]|3[0-1])\/'
+			. '((19|[2-9][0-9])[0-9]{2})$/'
 		;
 		$this->regex_name = '/^[a-z\-.,()\'"\s]+$/i';
 	}

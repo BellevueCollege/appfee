@@ -113,8 +113,6 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->transaction_type = $transaction_type;
 		$this->transaction_uuid = uniqid();
 		$this->unsigned_field_names = '';
-
-		$this->set_signature();
 	}
 
 	public function get_bill_to_address_country() {
@@ -214,18 +212,17 @@ class Cybersource_Payment_Model extends Default_Model {
 	}
 
 	public function save_data() {
-		$tsql =
-			'INSERT INTO ' . $this->database_table . ' ' .
-			'OUTPUT INSERTED.ReferenceNumber ' .
-			'VALUES (' .
-				':first_name, ' .
-				':last_name, ' .
-				':middle_name, ' .
-				':date_of_birth, ' .
-				':amount, ' .
-				':program_of_study, ' .
-				':time_stamp' .
-			');'
+		$tsql = 'INSERT INTO ' . $this->database_table . ' '
+			. 'OUTPUT INSERTED.ReferenceNumber '
+			. 'VALUES ('
+				. ':first_name, '
+				. ':last_name, '
+				. ':middle_name, '
+				. ':date_of_birth, '
+				. ':amount, '
+				. ':program_of_study, '
+				. ':time_stamp'
+			. ');'
 		;
 		$query = $this->database_connection->prepare( $tsql );
 
@@ -250,7 +247,6 @@ class Cybersource_Payment_Model extends Default_Model {
 			throw new Exception( $error_message );
 		}
 		$this->reference_number = $result_array['ReferenceNumber'];
-		$this->set_signature();
 	}
 
 	public function set_program_of_study( $program_of_study ) {
@@ -259,16 +255,17 @@ class Cybersource_Payment_Model extends Default_Model {
 
 	public function set_signature() {
 		$this->set_signed_date_time();
-		$data_to_sign = array();
+		$data_to_sign = '';
 		foreach ( $this->cybersource_signed_fields_to_variables_map
 			as $field => $value
 		) {
-			$data_to_sign[] = "$field=$value";
+			$data_to_sign .= "$field=$value,";
 		}
-		$data_to_sign_string = implode( ',', $data_to_sign );
+		// Remove trailing comma
+		$data_to_sign = substr( $data_to_sign, 0, -1 );
 		$hash = hash_hmac(
 			'sha256',
-			$data_to_sign_string,
+			$data_to_sign,
 			$this->cybersource_secret_key,
 			true
 		);

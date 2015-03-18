@@ -109,6 +109,9 @@ class Cybersource_Payment_Controller extends Name_DOB_Controller {
 		// Have model save the data
 		$this->model->save_data();
 
+		// Set the model signature
+		$this->model->set_signature();
+
 		return true;
 	}
 }

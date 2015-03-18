@@ -19,6 +19,6 @@ class Program_Of_Study_View extends Default_View {
 		$student_last_name = $this->model->get_student_last_name();
 		$student_middle_name = $this->model->get_student_middle_name();
 		$template_uri = $this->model->get_template_uri();
-		require_once( $template_uri );
+		require( $template_uri );
 	}
 }
