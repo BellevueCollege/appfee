@@ -255,16 +255,17 @@ class Cybersource_Payment_Model extends Default_Model {
 
 	public function set_signature() {
 		$this->set_signed_date_time();
-		$data_to_sign = array();
+		$data_to_sign = '';
 		foreach ( $this->cybersource_signed_fields_to_variables_map
 			as $field => $value
 		) {
-			$data_to_sign[] = "$field=$value";
+			$data_to_sign .= "$field=$value,";
 		}
-		$data_to_sign_string = implode( ',', $data_to_sign );
+		// Remove trailing comma
+		$data_to_sign = substr( $data_to_sign, 0, -1 );
 		$hash = hash_hmac(
 			'sha256',
-			$data_to_sign_string,
+			$data_to_sign,
 			$this->cybersource_secret_key,
 			true
 		);
