@@ -214,18 +214,17 @@ class Cybersource_Payment_Model extends Default_Model {
 	}
 
 	public function save_data() {
-		$tsql =
-			'INSERT INTO ' . $this->database_table . ' ' .
-			'OUTPUT INSERTED.ReferenceNumber ' .
-			'VALUES (' .
-				':first_name, ' .
-				':last_name, ' .
-				':middle_name, ' .
-				':date_of_birth, ' .
-				':amount, ' .
-				':program_of_study, ' .
-				':time_stamp' .
-			');'
+		$tsql = 'INSERT INTO ' . $this->database_table . ' '
+			. 'OUTPUT INSERTED.ReferenceNumber '
+			. 'VALUES ('
+				. ':first_name, '
+				. ':last_name, '
+				. ':middle_name, '
+				. ':date_of_birth, '
+				. ':amount, '
+				. ':program_of_study, '
+				. ':time_stamp'
+			. ');'
 		;
 		$query = $this->database_connection->prepare( $tsql );
 

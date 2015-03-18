@@ -30,11 +30,10 @@ class Default_Model {
 
 	public function get_current_url() {
 		$request_scheme = ( isset( $_SERVER['HTTPS'] ) ) ? 'https' : 'http';
-		$current_url =
-			$request_scheme .
-			'://' .
-			$_SERVER['HTTP_HOST'] .
-			$_SERVER['REQUEST_URI']
+		$current_url = $request_scheme
+			. '://'
+			. $_SERVER['HTTP_HOST']
+			. $_SERVER['REQUEST_URI']
 		;
 		return $current_url;
 	}

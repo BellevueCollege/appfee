@@ -21,9 +21,9 @@ $base_uri = rtrim( BASE_URI, '/' ) . '/';
 
 // Check to make sure we are hosted out of the correct directory
 if ( $base_uri !== substr( $request_uri, 0, strlen( $base_uri ) ) ) {
-	$error_message = 'The BASE_URI constant does not match the requested ' .
-		'URI. Please review the configuration.php file and set BASE_URI to ' .
-		'the appropriate path'
+	$error_message = 'The BASE_URI constant does not match the requested '
+		. 'URI. Please review the configuration.php file and set BASE_URI to '
+		. 'the appropriate path'
 	;
 	throw new Exception( $error_message );
 }
@@ -42,11 +42,10 @@ switch ( $application_uri ) {
 	case 'general-admissions':
 		require_once( 'model/student-name-dob-model.php' );
 		require_once( 'view/student-name-dob-view.php' );
-		$post_url =
-			'https://' .
-			$request_host .
-			$base_uri .
-			'general-admissions/program-of-study'
+		$post_url = 'https://'
+			. $request_host
+			. $base_uri
+			. 'general-admissions/program-of-study'
 		;
 		$model = new Student_Name_DOB_Model(
 			'template/student-name-dob-template.php',
