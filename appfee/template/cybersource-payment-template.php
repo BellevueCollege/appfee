@@ -59,6 +59,7 @@
                                     <input type="hidden" id="merchant_defined_data2" name="merchant_defined_data2" value="<?php echo $student_last_name ?>" />
                                     <input type="hidden" id="merchant_defined_data3" name="merchant_defined_data3" value="<?php echo $student_middle_name ?>" />
                                     <input type="hidden" id="merchant_defined_data4" name="merchant_defined_data4" value="<?php echo $student_date_of_birth ?>" />
+                                    <input type="hidden" id="merchant_defined_data5" name="merchant_defined_data5" value="<?php echo $program_of_study ?>" />
                                     <input type="hidden" id="profile_id" name="profile_id" value="<?php echo $cybersource_profile_id ?>" />
                                     <input type="hidden" id="reference_number" name="reference_number" value="<?php echo $reference_number ?>" />
                                     <input type="hidden" id="signed_date_time" name="signed_date_time" value="<?php echo $signed_date_time ?>" />
