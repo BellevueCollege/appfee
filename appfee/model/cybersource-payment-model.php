@@ -105,6 +105,8 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->item_0_name = $item_0_name;
 		$this->item_0_quantity = $item_0_quantity;
 		$this->item_0_unit_price = $item_0_unit_price;
+
+		// Mutiple items not implemented. Line item count always equals 1
 		$this->line_item_count = '1';
 		$this->signed_field_names = implode(
 			',',
@@ -112,6 +114,11 @@ class Cybersource_Payment_Model extends Default_Model {
 		);
 		$this->transaction_type = $transaction_type;
 		$this->transaction_uuid = uniqid();
+
+		/*
+		 * All form fields sent to CyberSource are signed. Unsigned field names
+		 * are not implemented.
+		 */
 		$this->unsigned_field_names = '';
 	}
 
