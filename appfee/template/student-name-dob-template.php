@@ -100,18 +100,27 @@
 	<script src="<?php echo $globals_url ?>j/g.js"></script>
 	<!-- jQuery Validate -->
 	<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+
+	<!-- moment.js (for date validation) -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
-
 			/*	Date of Birth Validation -- Middle-Endian. Date of birth must be after 1900	*/
 			$.validator.addMethod('dobME', function (value, element) {
-				return this.optional(element) || /^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/((19|[2-9][0-9])[0-9]{2})$/.test(value);
-			}, 'Please enter date of birth in MM/DD/YYYY format');
-
-			/* Add Letters + Basic Punctuation method from additional-methods.js */
-			$.validator.addMethod('letterswithbasicpunc', function (value, element) {
-				return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
-			}, 'Letters or punctuation only please');
+				/*	Check against regex to see if date format is valid and date > 1899	*/
+				var isValid = value.match(/^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/((19|[2-9][0-9])[0-9]{2})$/);
+				/*	Store date of birth	*/
+				var dob = moment(value, "M-D-YYYY");
+				/*	If element passes regex and passes moment date validation, check if date is in future	*/
+				if (isValid && dob.isValid()) {
+					var today = new moment(today);
+					if (dob >= today) {
+						isValid = false;
+					}
+					return isValid;
+				}
+			}, 'Please enter a valid date of birth in MM/DD/YYYY format');
 
 			/*  Validate Form   */
 			$('#payment_confirmation').validate({
