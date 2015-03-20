@@ -7,34 +7,34 @@ require_once( 'default-model.php' );
  */
 class Cybersource_Payment_Model extends Default_Model {
 
-	public $bill_to_address_country;
-	public $bill_to_address_state;
-	public $currency;
-	public $customer_ip_address;
-	public $cybersource_access_key;
-	public $cybersource_locale;
-	public $cybersource_profile_id;
-	public $cybersource_secret_key;
-	public $cybersource_signed_fields_to_variables_map;
-	public $database_connection;
-	public $database_table;
-	public $form_post_url;
-	public $item_0_name;
-	public $item_0_quantity;
-	public $item_0_unit_price;
-	public $line_item_count;
-	public $program_of_study;
-	public $reference_number;
-	public $signature;
-	public $signed_date_time;
-	public $signed_field_names;
-	public $student_date_of_birth;
-	public $student_first_name;
-	public $student_last_name;
-	public $student_middle_name;
-	public $transaction_type;
-	public $transaction_uuid;
-	public $unsigned_field_names;
+	protected $bill_to_address_country;
+	protected $bill_to_address_state;
+	protected $currency;
+	protected $customer_ip_address;
+	protected $cybersource_access_key;
+	protected $cybersource_locale;
+	protected $cybersource_profile_id;
+	protected $cybersource_secret_key;
+	protected $cybersource_signed_fields_to_variables_map;
+	protected $database_connection;
+	protected $database_table;
+	protected $form_post_url;
+	protected $item_0_name;
+	protected $item_0_quantity;
+	protected $item_0_unit_price;
+	protected $line_item_count;
+	protected $program_of_study;
+	protected $reference_number;
+	protected $signature;
+	protected $signed_date_time;
+	protected $signed_field_names;
+	protected $student_date_of_birth;
+	protected $student_first_name;
+	protected $student_last_name;
+	protected $student_middle_name;
+	protected $transaction_type;
+	protected $transaction_uuid;
+	protected $unsigned_field_names;
 
 	public function __construct(
 		$template_uri,

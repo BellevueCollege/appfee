@@ -8,8 +8,8 @@ require_once( 'default-controller.php' );
 
 class Name_DOB_Controller extends Default_Controller {
 
-	public $regex_date_of_birth;
-	public $regex_name;
+	protected $regex_date_of_birth;
+	protected $regex_name;
 
 	public function __construct( $model ) {
 		parent::__construct( $model );

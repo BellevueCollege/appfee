@@ -5,8 +5,8 @@
  */
 class Default_View {
 
-	public $model;
-	public $controller;
+	protected $model;
+	protected $controller;
 
 	public function __construct( $controller, $model ) {
 		$this->controller = $controller;

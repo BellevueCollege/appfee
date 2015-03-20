@@ -7,11 +7,11 @@ require_once( 'default-model.php' );
  */
 class Program_Of_Study_Model extends Default_Model {
 
-	public $form_post_url;
-	public $student_date_of_birth;
-	public $student_first_name;
-	public $student_last_name;
-	public $student_middle_name;
+	protected $form_post_url;
+	protected $student_date_of_birth;
+	protected $student_first_name;
+	protected $student_last_name;
+	protected $student_middle_name;
 
 	public function __construct(
 		$template_uri,

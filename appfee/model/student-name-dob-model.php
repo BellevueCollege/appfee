@@ -7,7 +7,7 @@ require_once( 'default-model.php' );
  */
 class Student_Name_DOB_Model extends Default_Model {
 
-	public $form_post_url;
+	protected $form_post_url;
 
 	public function __construct(
 		$template_uri,

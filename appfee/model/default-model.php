@@ -5,11 +5,11 @@
  */
 class Default_Model {
 
-	public $errors;
-	public $redirect_url;
-	public $globals_path;
-	public $globals_url;
-	public $template_uri;
+	protected $errors;
+	protected $redirect_url;
+	protected $globals_path;
+	protected $globals_url;
+	protected $template_uri;
 
 	public function __construct( $template_uri,
 		$globals_path = NULL, $globals_url = NULL
