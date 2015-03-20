@@ -50,7 +50,7 @@
 										</div>
 										<dir class="col-sm-3 checkbox">
 											<label>
-												<input id="no_middle_name" name="no_middle_name" type="checkbox" class="no_error_message"> No Middle Name
+												<input id="no_middle_name" type="checkbox"> No Middle Name
 											</label>
 										</dir>
 									</div>
@@ -122,33 +122,45 @@
 				}
 			}, 'Please enter a valid date of birth in MM/DD/YYYY format');
 
+			/* Name validation supporting letters, '_- and space */
+			$.validator.addMethod('validName', function (value, element) {
+				return this.optional(element) || /^[a-z\-_'\s]+$/i.test(value);
+			}, 'Name can only include capital and small letters, single quote, hyphen, and underline');
 			/*  Validate Form   */
 			$('#payment_confirmation').validate({
 				rules: {
 					first_name: {
 						required: true,
-						letterswithbasicpunc: true
+						validName: true
 					},
-
 					last_name: {
 						required: true,
-						letterswithbasicpunc: true
+						validName: true
 					},
 
 					middle_name: {
 						required: '#no_middle_name:unchecked',
-						letterswithbasicpunc: true
+						validName: true
 					},
+
 					date_of_birth: {
 						required: true,
 						dobME: true
 					}
-
 				},
 				messages: {
-					first_name: 'First Name is Required',
-					last_name: 'Last Name is Required',
-					middle_name: 'Please Provide your Middle Name or Check \"No Middle Name\"',
+					first_name: {
+						required: 'First Name is Required',
+						validName: 'First Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
+					last_name: {
+						required: 'Last Name is Required',
+						validName: 'Last Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
+					middle_name: {
+						required: 'Please Provide your Middle Name or Check \"No Middle Name\"',
+						validName: 'Middle Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
 					date_of_birth: {
 						required: 'Date of Birth is Required',
 						dobME: 'Date of Birth must be in MM/DD/YYYY format'
@@ -194,7 +206,6 @@
 		// Check Field Status when things change
 		$('#no_middle_name').change(function () {
 			checkAllowBlank($(this), $('#middle_name'))
-			$('#middle_name').valid()
 		});
 
 		$('#middle_name').keyup(function () {
