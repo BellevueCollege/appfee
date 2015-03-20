@@ -53,8 +53,8 @@ switch ( $application_uri ) {
 			GLOBALS_URL,
 			$post_url
 		);
-		$controler = NULL;
-		$view = new Student_Name_DOB_View( $controler, $model );
+		$controller = NULL;
+		$view = new Student_Name_DOB_View( $controller, $model );
 		echo $view->get_output();
 		break;
 
