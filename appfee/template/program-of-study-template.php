@@ -83,7 +83,7 @@
 														<!-- .radio -->
 
 														<div class="conditional-group form-group" id="proftech_type">
-															<label class="sr-only" for="proftech_type">Select a Professional Technical Degree:</label>
+															<label class="sr-only" for="proftech_type_selector">Select a Professional Technical Degree:</label>
 															<select class="form-control" id="proftech_type_selector" name="proftech_type" aria-required="true" required>
 																<option value="" disabled selected>Select your option</option>
 																<option value="505J">Accounting - 90 Credit AA Program </option>
