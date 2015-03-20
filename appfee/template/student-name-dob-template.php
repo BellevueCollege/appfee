@@ -99,7 +99,7 @@
 	<script src="<?php echo $globals_url ?>j/bootstrap.min.js"></script>
 	<script src="<?php echo $globals_url ?>j/g.js"></script>
 	<!-- jQuery Validate -->
-	<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+	<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 
 	<!-- moment.js (for date validation) -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
