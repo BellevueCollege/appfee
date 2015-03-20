@@ -97,14 +97,6 @@
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-sm-3 control-label">Program of Study Code:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $program_of_study ?>
-											</p>
-										</div>
-									</div>
 									&nbsp;
 									<div class="row">
 										<div class="col-sm-3">
