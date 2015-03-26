@@ -50,7 +50,7 @@
 										</div>
 										<dir class="col-sm-3 checkbox">
 											<label>
-												<input id="no_middle_name" type="checkbox"> No Middle Name
+												<input id="no_middle_name" name="no_middle_name" type="checkbox" class="no_error_message"> No Middle Name
 											</label>
 										</dir>
 									</div>
@@ -130,7 +130,6 @@
 						required: '#no_middle_name:unchecked',
 						letterswithbasicpunc: true
 					},
-
 					date_of_birth: {
 						required: true,
 						dobME: true
@@ -186,7 +185,7 @@
 		// Check Field Status when things change
 		$('#no_middle_name').change(function () {
 			checkAllowBlank($(this), $('#middle_name'))
-
+			$('#middle_name').valid()
 		});
 
 		$('#middle_name').keyup(function () {
