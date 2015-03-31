@@ -212,7 +212,15 @@ class Cybersource_Payment_Model extends Default_Model {
 	}
 
 	public function save_data() {
-		$tsql = 'INSERT INTO ' . $this->database_table . ' '
+		$tsql = 'INSERT INTO ' . $this->database_table . ' ('
+				. 'FirstName, '
+				. 'LastName, '
+				. 'MiddleName, '
+				. 'DOB, '
+				. 'Amount, '
+				. 'ProgramofStudy, '
+				. 'Timestamp'
+			. ') '
 			. 'OUTPUT INSERTED.ReferenceNumber '
 			. 'VALUES ('
 				. ':first_name, '
