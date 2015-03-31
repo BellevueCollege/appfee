@@ -66,7 +66,7 @@
 												<!-- .radio -->
 
 												<div class="conditional-group form-group">
-													<p class="radio-heading" id="which_degree_heading">Which Type of Degree?</p>
+													<p class="radio-heading" id="which_degree_heading">Which type?</p>
 													<div class="input-container">
 														<div class="radio">
 															<label>
