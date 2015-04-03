@@ -62,19 +62,25 @@ switch ( $application_uri ) {
 		 * Load class file for Student Name DOB View.
 		 */
 		require( 'view/student-name-dob-view.php' );
+
+		// Configuration objects and variables.
 		$post_url = 'https://'
 			. $request_host
 			. $base_uri
 			. 'general-admissions/program-of-study'
 		;
+		$resource_library_configuration = new HTML_Resource_Library();
+
+		// Model view controller objects.
 		$model = new Student_Name_DOB_Model(
 			'template/student-name-dob-template.php',
-			GLOBALS_PATH,
-			GLOBALS_URL,
+			$resource_library_configuration,
 			$post_url
 		);
 		$controller = NULL;
 		$view = new Student_Name_DOB_View( $controller, $model );
+
+		// View and controller actions.
 		echo $view->get_output();
 		break;
 
