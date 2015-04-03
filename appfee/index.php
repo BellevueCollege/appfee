@@ -14,9 +14,9 @@
  */
 
 /**
- * Load the user configurable constants.
+ * Load configuration structures.
  */
-require( 'configuration.php' );
+require( 'include/configuration-structures.php' );
 
 /**
  * Defines the application version number.
