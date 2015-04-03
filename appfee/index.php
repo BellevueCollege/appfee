@@ -125,28 +125,23 @@ switch ( $application_uri ) {
 		 * Load class file for Cybersource Payment View.
 		 */
 		require( 'view/cybersource-payment-view.php' );
+
+		// Configuration objects.
+		$cybersource_configuration = new General_Admissions_Configuration();
+		$database_configuration = new Database_Configuration();
+		$resource_library_configuration = new HTML_Resource_Library();
+
+		// Model view controller objects.
 		$model = new Cybersource_Payment_Model(
 			'template/cybersource-payment-template.php',
-			GLOBALS_PATH,
-			GLOBALS_URL,
-			DATABASE_DSN,
-			DATABASE_USER,
-			DATABASE_PASSWORD,
-			DEFAULT_BILL_TO_ADDRESS_COUNTRY,
-			DEFAULT_BILL_TO_ADDRESS_STATE,
-			CURRENCY,
-			CYBERSOURCE_ACCESS_KEY,
-			CYBERSOURCE_LOCALE,
-			CYBERSOURCE_PROFILE_ID,
-			CYBERSOURCE_SECRET_KEY,
-			CYBERSOURCE_FORM_POST_URL,
-			GENERAL_ADMISSIONS_ITEM_DESCRIPTION,
-			'1',
-			GENERAL_ADMISSIONS_FEE,
-			DEFAULT_TRANSACTION_TYPE
+			$resource_library_configuration,
+			$database_configuration,
+			$cybersource_configuration
 		);
 		$controller = new Cybersource_Payment_Controller( $model );
 		$view = new Cybersource_Payment_View( $controller, $model );
+
+		// View and controller actions.
 		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;

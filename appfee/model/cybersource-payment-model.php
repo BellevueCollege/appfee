@@ -326,54 +326,29 @@ class Cybersource_Payment_Model extends Default_Model {
 	 * @see Cybersource_Payment_Model::$transaction_uuid
 	 * @see Cybersource_Payment_Model::$unsigned_field_names
 	 *
-	 * @param string $template_uri File system path to a HTML template.
-	 * @param string $globals_path File system path the globals resource
-	 *                             library.
-	 * @param string $globals_url URL that the globals library can be referenced
-	 *                            from.
-	 * @param string $database_dsn Database data source name.
-	 * @param string $database_username Database user name.
-	 * @param string $database_password Database user name's password.
-	 * @param string $bill_to_address_country Billing address country.
-	 * @param string $bill_to_address_state Billing address state.
-	 * @param string $currency Type of currency.
-	 * @param string $cybersource_access_key CyberSource access key.
-	 * @param string $cybersource_locale CyberSource locale (language).
-	 * @param string $cybersource_profile_id CyberSource profile id.
-	 * @param string $cybersource_secret_key CyberSource secret key.
-	 * @param string $form_post_url URL that the program of study form can be
-	 *                              posted to.
-	 * @param string $item_0_name Item 0's name (description).
-	 * @param string $item_0_quantity Item 0's unit quantity.
-	 * @param string $item_0_unit_price Item 0's unit price.
-	 * @param string $transaction_type Type of CyberSource transaction.
+	 * @param string $template_uri              File system path to a HTML
+	 *                                          template.
+	 * @param object $globals_configuration     HTML resource configuration
+	 *                                          object.
+	 * @param object $database_configuration    Database configuration object.
+	 * @param object $cybersource_configuration CybeSource configuartion object.
 	 */
 	public function __construct(
 		$template_uri,
-		$globals_path,
-		$globals_url,
-		$database_dsn,
-		$database_username,
-		$database_password,
-		$bill_to_address_country,
-		$bill_to_address_state,
-		$currency,
-		$cybersource_access_key,
-		$cybersource_locale,
-		$cybersource_profile_id,
-		$cybersource_secret_key,
-		$form_post_url,
-		$item_0_name,
-		$item_0_quantity,
-		$item_0_unit_price,
-		$transaction_type
+		$globals_configuration,
+		$database_configuration,
+		$cybersource_configuration
 	) {
-		parent::__construct( $template_uri, $globals_path, $globals_url );
+		parent::__construct(
+			$template_uri,
+			$globals_configuration->get_path(),
+			$globals_configuration->get_url()
+		);
 
 		$this->database_connection = new PDO(
-			$database_dsn,
-			$database_username,
-			$database_password
+			$database_configuration->get_data_source_name(),
+			$database_configuration->get_username(),
+			$database_configuration->get_password()
 		);
 
 		$this->cybersource_signed_fields_to_variables_map = array(
@@ -403,26 +378,40 @@ class Cybersource_Payment_Model extends Default_Model {
 			'unsigned_field_names' => &$this->unsigned_field_names,
 		);
 
-		$this->bill_to_address_country = $bill_to_address_country;
-		$this->bill_to_address_state = $bill_to_address_state;
-		$this->currency = $currency;
+		$this->bill_to_address_country =
+			$cybersource_configuration->get_bill_to_address_country()
+		;
+		$this->bill_to_address_state =
+			$cybersource_configuration->get_bill_to_address_state()
+		;
+		$this->currency = $cybersource_configuration->get_currency();
 		$this->customer_ip_address = $this->get_customer_ip_address();
-		$this->cybersource_access_key = $cybersource_access_key;
-		$this->cybersource_locale = $cybersource_locale;
-		$this->cybersource_profile_id = $cybersource_profile_id;
-		$this->cybersource_secret_key = $cybersource_secret_key;
-		$this->form_post_url = $form_post_url;
-		$this->item_0_name = $item_0_name;
-		$this->item_0_quantity = $item_0_quantity;
-		$this->item_0_unit_price = $item_0_unit_price;
+		$this->cybersource_access_key =
+			$cybersource_configuration->get_access_key()
+		;
+		$this->cybersource_locale = $cybersource_configuration->get_locale();
+		$this->cybersource_profile_id =
+			$cybersource_configuration->get_profile_id()
+		;
+		$this->cybersource_secret_key =
+			$cybersource_configuration->get_secret_key()
+		;
+		$this->form_post_url = $cybersource_configuration->get_form_post_url();
+		$this->item_0_name = $cybersource_configuration->get_item_description();
 
-		// Mutiple items not implemented. Line item count always equals 1
+		// Mutiple unit quantites not implemented. Always equals 1.
+		$this->item_0_quantity = '1';
+		$this->item_0_unit_price = $cybersource_configuration->get_fee();
+
+		// Mutiple items not implemented. Line item count always equals 1.
 		$this->line_item_count = '1';
 		$this->signed_field_names = implode(
 			',',
 			array_keys( $this->cybersource_signed_fields_to_variables_map )
 		);
-		$this->transaction_type = $transaction_type;
+		$this->transaction_type =
+			$cybersource_configuration->get_transaction_type()
+		;
 		$this->transaction_uuid = uniqid();
 
 		/*
