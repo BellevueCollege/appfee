@@ -1,13 +1,52 @@
 <?php
-
-require_once( 'name-dob-controller.php' );
-
-/*
- * TODO: Add PHP DocBlock for this Class
+/**
+ * CyberSource payment controller class file
+ *
+ * This file contains the Cybersource_Payment_Controller class that extends the
+ * name and date of birth controller.
+ *
+ * @copyright 2015 Bellevue College
+ * @license GNU General Public License, version 2
+ * @link https://github.com/BellevueCollege/appfee
+ * @package AppFee
+ * @subpackage Controller
+ * @since 1.0.0
  */
 
+/**
+ * Load the the name and date of birth controller class.
+ */
+require_once( 'name-dob-controller.php' );
+
+/**
+ * Defines the CyberSource payment controller
+ *
+ * This class defines the controller to be used to submit CyberSource payment.
+ *
+ * @since 1.0.0
+ */
 class Cybersource_Payment_Controller extends Name_DOB_Controller {
 
+	/**
+	 * Get the program of study code.
+	 *
+	 * Get the program of study code from the post array.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args {
+	 *     Array of key values usually passed in from the PHP $_POST variable.
+	 *
+	 *     @type string $proftech_type Optional. Professional technical
+	 *                                 certificate / degree code.
+	 *     @type string $what_degree   Optional. A non-professional technical
+	 *                                 certificate / degree code.
+	 *     @type string $no_degree     Optional. A code for non-degree
+	 *                                 selections.
+	 * }
+	 * @return string|false Program of study code or false if program of study
+	 *                      can not be found.
+	 */
 	public function get_program_of_study( $post_array ) {
 		if ( ! empty( $post_array['proftech_type'] ) ) {
 			return $post_array['proftech_type'];
@@ -20,10 +59,40 @@ class Cybersource_Payment_Controller extends Name_DOB_Controller {
 		}
 	}
 
+	// TODO: Implement program of study code validation.
 	public function is_valid_program_of_study( $program_of_study ) {
 		return true;
 	}
 
+	/**
+	 * Validate and save HTTP post data to the model object.
+	 *
+	 * Validates an array of key values (usually from HTTP post) and saves
+	 * values from the array to a model object.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args {
+	 *     Array of key values usually passed in from the PHP $_POST variable.
+	 *
+	 *     @type string $date_of_birth A date of birth.
+	 *     @type string $first_name    A first name.
+	 *     @type string $form_url      URL that the form posted from.
+	 *     @type string $last_name     A last name.
+	 *     @type string $middle_name   A middle name.
+	 *     @type string $no_degree     Optional. A code for non-degree
+	 *                                 selections.
+	 *     @type string $no_fill       A field that needs to be blank for the
+	 *                                 form to validate.
+	 *     @type string $proftech_type Optional. Professional technical
+	 *                                 certificate / degree code.
+	 *     @type string $what_degree   Optional. A non-professional technical
+	 *                                 certificate / degree code.
+	 * }
+	 *
+	 * @return boolean True if the post fields are populated (even if invalid),
+	 *                 false if the post fields are not populated correctly.
+	 */
 	public function save_data( $post_array ) {
 		$data_not_valid = false;
 		$honey_pot_field = 'no_fill';
