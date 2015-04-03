@@ -93,19 +93,25 @@ switch ( $application_uri ) {
 		 * Load class file for Program Of Study View.
 		 */
 		require( 'view/program-of-study-view.php' );
+
+		// Configuration objects and variables.
 		$post_url = 'https://'
 			. $request_host
 			. $base_uri
 			. 'general-admissions/save'
 		;
+		$resource_library_configuration = new HTML_Resource_Library();
+
+		// Model view controller objects.
 		$model = new Program_Of_Study_Model(
 			'template/program-of-study-template.php',
-			GLOBALS_PATH,
-			GLOBALS_URL,
+			$resource_library_configuration,
 			$post_url
 		);
 		$controller = new Program_Of_Study_Controller( $model );
 		$view = new Program_Of_Study_View( $controller, $model );
+
+		// View and controller actions.
 		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;

@@ -84,21 +84,21 @@ class Program_Of_Study_Model extends Default_Model {
 	 * @see Default_Model::$globals_url
 	 * @see Program_Of_Study_Model::$form_post_url
 	 *
-	 * @param string $template_uri File system path to a HTML template.
-	 * @param string $globals_path File system path the globals resource
-	 *                             library.
-	 * @param string $globals_url URL that the globals library can be referenced
-	 *                            from.
-	 * @param string $form_post_url URL that the program of study form can be
-	 *                              posted to.
+	 * @param string $template_uri          File system path to a HTML template.
+	 * @param object $globals_configuration HTML resource configuration object.
+	 * @param string $form_post_url         URL that the program of study form
+	 *                                      can be posted to.
 	 */
 	public function __construct(
 		$template_uri,
-		$globals_path,
-		$globals_url,
+		$globals_configuration,
 		$form_post_url
 	) {
-		parent::__construct( $template_uri, $globals_path, $globals_url );
+		parent::__construct(
+			$template_uri,
+			$globals_configuration->get_path(),
+			$globals_configuration->get_url()
+		);
 		$this->form_post_url = $form_post_url;
 	}
 
