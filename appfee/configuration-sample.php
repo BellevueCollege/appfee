@@ -95,14 +95,6 @@ define( 'DATABASE_USER', '' );
 define( 'DATABASE_PASSWORD', '' );
 
 /**
- * Defines the database table to use for saving student information.
- *
- * @since 1.0.0
- * @var string
- */
-define( 'DATABASE_TABLE', '' );
-
-/**
  * Defines the default billing address country to be sent to CyberSource.
  *
  * @since 1.0.0

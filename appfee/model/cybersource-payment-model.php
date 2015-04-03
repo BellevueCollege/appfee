@@ -144,15 +144,6 @@ class Cybersource_Payment_Model extends Default_Model {
 	protected $database_connection;
 
 	/**
-	 * The database table used for saving data.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 * @var string
-	 */
-	protected $database_table;
-
-	/**
 	 * URL that can be used to post the program of study form.
 	 *
 	 * @since 1.0.0
@@ -325,7 +316,6 @@ class Cybersource_Payment_Model extends Default_Model {
 	 * @see Cybersource_Payment_Model::$cybersource_locale
 	 * @see Cybersource_Payment_Model::$cybersource_profile_id
 	 * @see Cybersource_Payment_Model::$cybersource_secret_key
-	 * @see Cybersource_Payment_Model::$database_table
 	 * @see Cybersource_Payment_Model::$form_post_url
 	 * @see Cybersource_Payment_Model::$item_0_name
 	 * @see Cybersource_Payment_Model::$item_0_quantity
@@ -344,7 +334,6 @@ class Cybersource_Payment_Model extends Default_Model {
 	 * @param string $database_dsn Database data source name.
 	 * @param string $database_username Database user name.
 	 * @param string $database_password Database user name's password.
-	 * @param string $database_table Database table for saving data.
 	 * @param string $bill_to_address_country Billing address country.
 	 * @param string $bill_to_address_state Billing address state.
 	 * @param string $currency Type of currency.
@@ -366,7 +355,6 @@ class Cybersource_Payment_Model extends Default_Model {
 		$database_dsn,
 		$database_username,
 		$database_password,
-		$database_table,
 		$bill_to_address_country,
 		$bill_to_address_state,
 		$currency,
@@ -423,7 +411,6 @@ class Cybersource_Payment_Model extends Default_Model {
 		$this->cybersource_locale = $cybersource_locale;
 		$this->cybersource_profile_id = $cybersource_profile_id;
 		$this->cybersource_secret_key = $cybersource_secret_key;
-		$this->database_table = $database_table;
 		$this->form_post_url = $form_post_url;
 		$this->item_0_name = $item_0_name;
 		$this->item_0_quantity = $item_0_quantity;
@@ -772,7 +759,6 @@ class Cybersource_Payment_Model extends Default_Model {
 	 * @since 1.0.0
 	 *
 	 * @see Cybersource_Payment_Model::$database_connection
-	 * @see Cybersource_Payment_Model::$database_table
 	 * @see Cybersource_Payment_Model::$item_0_unit_price
 	 * @see Cybersource_Payment_Model::$program_of_study
 	 * @see Cybersource_Payment_Model::$reference_number
@@ -782,28 +768,16 @@ class Cybersource_Payment_Model extends Default_Model {
 	 * @see Cybersource_Payment_Model::$student_middle_name
 	 */
 	public function save_data() {
-		$tsql = 'INSERT INTO ' . $this->database_table . ' ('
-				. 'FirstName, '
-				. 'LastName, '
-				. 'MiddleName, '
-				. 'DOB, '
-				. 'Amount, '
-				. 'ProgramofStudy, '
-				. 'Timestamp'
-			. ') '
-			. 'OUTPUT INSERTED.ReferenceNumber '
-			. 'VALUES ('
-				. ':first_name, '
-				. ':last_name, '
-				. ':middle_name, '
-				. ':date_of_birth, '
-				. ':amount, '
-				. ':program_of_study, '
-				. ':time_stamp'
-			. ');'
+		$tsql = 'EXEC dbo.usp_WebAppFee'
+			. ' @FirstName = :first_name,'
+			. ' @LastName = :last_name,'
+			. ' @MiddleName = :middle_name,'
+			. ' @DOB = :date_of_birth,'
+			. ' @Amount = :amount,'
+			. ' @POS = :program_of_study'
+			. ';'
 		;
 		$query = $this->database_connection->prepare( $tsql );
-
 		$values = array(
 			':first_name'       => $this->student_first_name,
 			':last_name'        => $this->student_last_name,
@@ -811,11 +785,10 @@ class Cybersource_Payment_Model extends Default_Model {
 			':date_of_birth'    => $this->student_date_of_birth,
 			':amount'           => $this->item_0_unit_price,
 			':program_of_study' => $this->program_of_study,
-			':time_stamp'       => date( 'Y-m-d\TH:i:s' ),
 		);
-
 		$query->execute( $values );
 		$result_array = $query->fetch();
+
 		if ( ! isset( $result_array['ReferenceNumber'] )
 			|| ! ctype_digit( $result_array['ReferenceNumber'] )
 		) {
