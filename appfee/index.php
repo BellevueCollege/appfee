@@ -168,12 +168,18 @@ switch ( $application_uri ) {
 		 * Load class file for the Default View.
 		 */
 		require( 'view/default-view.php' );
+
+		// Configuration objects.
+		$resource_library_configuration = new HTML_Resource_Library();
+
+		// Model view controller objects.
 		$model = new Default_Model(
 			'template/error-404-template.php',
-			GLOBALS_PATH,
-			GLOBALS_URL
+			$resource_library_configuration
 		);
 		$view = new Default_View( NULL, $model );
+
+		// View and controller actions.
 		header( $_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found' );
 		echo $view->get_output();
 }

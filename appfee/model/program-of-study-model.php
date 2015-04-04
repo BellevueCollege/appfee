@@ -94,11 +94,7 @@ class Program_Of_Study_Model extends Default_Model {
 		$globals_configuration,
 		$form_post_url
 	) {
-		parent::__construct(
-			$template_uri,
-			$globals_configuration->get_path(),
-			$globals_configuration->get_url()
-		);
+		parent::__construct( $template_uri, $globals_configuration );
 		$this->form_post_url = $form_post_url;
 	}
 

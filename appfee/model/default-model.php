@@ -79,21 +79,16 @@ class Default_Model {
 	 * @see Default_Model::$globals_path
 	 * @see Default_Model::$globals_url
 	 *
-	 * @param string $template_uri File system path to a HTML template.
-	 * @param string $globals_path Optional. File system path the globals
-	 *                             resource library.
-	 * @param string $globals_url Optional. URL that the globals library can be
-	 *                            referenced from.
+	 * @param string $template_uri          File system path to a HTML template.
+	 * @param object $globals_configuration HTML resource configuration object.
 	 */
 	public function __construct( $template_uri,
-		$globals_path = NULL, $globals_url = NULL
+		$globals_configuration = null
 	) {
 		$this->template_uri = $template_uri;
-		if ( isset( $globals_path ) ) {
-			$this->globals_path = $globals_path;
-		}
-		if ( isset( $globals_url ) ) {
-			$this->globals_url = $globals_url;
+		if ( isset( $globals_configuration ) ) {
+			$this->globals_path = $globals_configuration->get_path();
+			$this->globals_url = $globals_configuration->get_url();
 		}
 		$this->errors = array();
 	}

@@ -339,11 +339,7 @@ class Cybersource_Payment_Model extends Default_Model {
 		$database_configuration,
 		$cybersource_configuration
 	) {
-		parent::__construct(
-			$template_uri,
-			$globals_configuration->get_path(),
-			$globals_configuration->get_url()
-		);
+		parent::__construct( $template_uri, $globals_configuration );
 
 		$this->database_connection = new PDO(
 			$database_configuration->get_data_source_name(),
