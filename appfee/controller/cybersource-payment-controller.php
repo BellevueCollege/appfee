@@ -94,8 +94,10 @@ class Cybersource_Payment_Controller extends Name_DOB_Controller {
 	 *                 false if the post fields are not populated correctly.
 	 */
 	public function save_data( $post_array ) {
-		$data_not_valid = false;
-		$honey_pot_field = 'no_fill';
+		$data_not_valid                 = false;
+		$honey_pot_field                = 'no_fill';
+		$maximum_first_last_name_length = 32;
+		$maximum_middle_name_length     = 16;
 		$program_of_study = $this->get_program_of_study( $post_array );
 
 		/*
@@ -135,13 +137,19 @@ class Cybersource_Payment_Controller extends Name_DOB_Controller {
 			);
 			$data_not_valid = true;
 		}
-		if ( ! $this->is_valid_name( $first_name ) ) {
+		if ( ! $this->is_valid_name( $first_name,
+					$maximum_first_last_name_length
+				)
+		) {
 			$this->model->add_error(
 				'First name contains invalid characters.'
 			);
 			$data_not_valid = true;
 		}
-		if ( ! $this->is_valid_name( $last_name ) ) {
+		if ( ! $this->is_valid_name( $last_name,
+					$maximum_first_last_name_length
+				)
+		) {
 			$this->model->add_error(
 				'Last name contains invalid characters.'
 			);
@@ -152,7 +160,11 @@ class Cybersource_Payment_Controller extends Name_DOB_Controller {
 				'The program of study code is invalid.'
 			);
 		}
-		if ( isset( $middle_name ) && ! $this->is_valid_name( $middle_name ) ) {
+		if ( isset( $middle_name )
+			&& ! $this->is_valid_name( $middle_name,
+					$maximum_middle_name_length
+				)
+		) {
 			$this->model->add_error(
 				'Middle name contains invalid characters.'
 			);

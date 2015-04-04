@@ -107,19 +107,24 @@ class Name_DOB_Controller extends Default_Controller {
 	 * Validates a name.
 	 *
 	 * Validates a name using a regular and expression to make sure the name
-	 * contains valid characters.
+	 * contains valid characters and that it does not exceed a maximum length.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @see Name_DOB_Controller::$regex_name
-	 * @param string $name A name.
-	 * @return boolean True for valid, false for invalid.
+	 *
+	 * @param string  $name    A name.
+	 * @param integer $length  Maximum name length.
+	 *
+	 * @return boolean         True for valid, false for invalid.
 	 */
-	public function is_valid_name( $name ) {
+	public function is_valid_name( $name, $length ) {
 		$is_valid_name = preg_match(
 			$this->regex_name,
 			$name
 		);
-		if ( ! $is_valid_name ) {
+		$name_length = strlen( $name );
+		if ( ! $is_valid_name || $name_length > $length ) {
 			return false;
 		}
 		return true;
