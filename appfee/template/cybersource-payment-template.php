@@ -99,7 +99,7 @@
 											<input type="button" class="btn btn-link pull-right" value="Go Back" onclick="history.back(-1)" />
 										</div>
 										<div class="col-sm-8">
-											<button type="submit" id="submit_btn" class="btn btn-success">Continue</button>
+											<button type="submit" id="submit_btn" class="btn btn-success">Continue to Payment</button>
 										</div>
 									</div>
 

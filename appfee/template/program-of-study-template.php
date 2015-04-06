@@ -8,7 +8,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Program of Student Declaration @ Bellevue College</title>
+	<title>Program of Study Declaration @ Bellevue College</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,22 +70,23 @@
 													<div class="input-container">
 														<div class="radio">
 															<label>
-																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree</label>
+																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree
+															</label>
 														</div>
 														<!-- .radio -->
 													</div>
 													<div class="input-container">
 														<div class="radio">
 															<label>
-																<input type="radio" name="what_degree" id="what_degree_proftech" value="proftech" aria-describedby="which_degree_heading" aria-required="true" required> Professional Technical Degree
+																<input type="radio" name="what_degree" id="what_degree_proftech" value="proftech" aria-describedby="which_degree_heading" aria-required="true" required> Professional Technical Degree or Certificate
 															</label>
 														</div>
 														<!-- .radio -->
 
 														<div class="conditional-group form-group" id="proftech_type">
-															<label class="sr-only" for="proftech_type_selector">Select a Professional Technical Degree:</label>
+															<label class="sr-only" for="proftech_type_selector">Select a Professional Technical Degree or Certificate:</label>
 															<select class="form-control" id="proftech_type_selector" name="proftech_type" aria-required="true" required>
-																<option value="" disabled selected>Select your option</option>
+																<option value="" disabled selected>Select an option</option>
 																<option value="505J">Accounting - 90 Credit AA Program </option>
 																<option value="505K">Accounting - 97 Credit AAS-T Program </option>
 																<option value="505D">Accounting: Accounting Assistant - 46 Credit Certificate Program </option>
@@ -190,7 +191,7 @@
 											<div class="input-container">
 												<div class="radio">
 													<label>
-														<input type="radio" name="taking_degree" id="taking_degree_no" value="no" aria-describedby="complete_degree_heading" required> No
+														<input type="radio" name="taking_degree" id="taking_degree_no" value="no" aria-describedby="complete_degree_heading" aria-required="true" required> No
 													</label>
 												</div>
 												<div class="conditional-group form-group">

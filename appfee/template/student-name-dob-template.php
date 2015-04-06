@@ -8,7 +8,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Pay Application Fees @ Bellevue College</title>
+	<title>Pay Application Fee @ Bellevue College</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@
 						<div class="row row-padding">
 							<div class="content-padding">
 								<p class="entry-title">&nbsp;</p>
-								<h1>Application Fee Payment Form</h1>
+								<h1>Pay Application Fee</h1>
 								<p class="lead">Thank you for your application to Bellevue College! Please provide the information below so that we can link your payment to your application. Required fields marked with *</p>
 								<form class="form-horizontal" id="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
 									<input type="hidden" id="form_url" name="form_url" value="<?php echo $current_url  ?>" />
@@ -48,11 +48,11 @@
 										<div class="col-sm-5">
 											<input type="text" maxlength="16" class="form-control" id="middle_name" name="middle_name" />
 										</div>
-										<dir class="col-sm-3 checkbox">
+										<div class="col-sm-3 checkbox">
 											<label>
 												<input id="no_middle_name" type="checkbox"> No Middle Name
 											</label>
-										</dir>
+										</div>
 									</div>
 									<div class="form-group">
 										<label for="last_name" class="col-sm-3 control-label">Student Last Name:*</label>
@@ -206,6 +206,7 @@
 		// Check Field Status when things change
 		$('#no_middle_name').change(function () {
 			checkAllowBlank($(this), $('#middle_name'))
+			$('#middle_name').valid();
 		});
 
 		$('#middle_name').keyup(function () {
