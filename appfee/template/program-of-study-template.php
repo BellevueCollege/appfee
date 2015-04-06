@@ -72,6 +72,7 @@
 															<label>
 																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree
 															</label>
+															<a tabindex="0" href="#" role="button" data-toggle="popover" data-trigger="focus" title="Help Content" data-content="TO DO: Add Content to this element!"><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
 														</div>
 														<!-- .radio -->
 													</div>
@@ -97,7 +98,7 @@
 																<option value="437">Alcohol &amp; Drug Counseling - 46 Credit Certificate Program </option>
 																<option value="328">Allied Health - 90 Credit AAS-T Program </option>
 																<option value="310B">Allied Health: Clinical Lab Assistant - 29 Credit Certificate Program </option>
-																<option value=310C "">Allied Health: Clinical Lab Assistant - 45 Credit Certificate Program </option>
+																<option value="310C">Allied Health: Clinical Lab Assistant - 45 Credit Certificate Program </option>
 																<option value="391A">Allied Health: Emergency Department Technician - 44 Credit Certificate Program </option>
 																<option value="391C">Allied Health: Emergency Department Technician - 50 Credit Certificate Program </option>
 																<option value="532D">Allied Health: Health Unit Coordinator - 50 Credit Certificate Program </option>
@@ -200,6 +201,8 @@
 														<label>
 															<input type="radio" name="no_degree" id="no_degree_preq" value="PREQ" aria-describedby="no_degree_heading" aria-required="true" required> Taking Prerequisites
 														</label>
+														<a tabindex="0" href="#" role="button" data-toggle="popover" data-trigger="focus" title="Help Content" data-content="TO DO: Add Content to this element!"><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+
 													</div>
 													<div class="radio">
 														<label>
@@ -306,6 +309,11 @@
 				}
 			});
 		});
+
+		// Initialize Popover functionality in Bootstrap
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
 	</script>
 </body>
 
