@@ -1,16 +1,61 @@
 <?php
-
-require_once( 'name-dob-controller.php' );
-
-/*
- * TODO: Add PHP DocBlock for this Class
+/**
+ * Program of study controller class file
+ *
+ * This file contains the Program_Of_Study_Controller class that extends the
+ * name and date of birth controller.
+ *
+ * @copyright 2015 Bellevue College
+ * @license GNU General Public License, version 2
+ * @link https://github.com/BellevueCollege/appfee
+ * @package AppFee
+ * @subpackage Controller
+ * @since 1.0.0
  */
 
+/**
+ * Load the the name and date of birth controller class.
+ */
+require_once( 'name-dob-controller.php' );
+
+/**
+ * Defines the program of study controller
+ *
+ * This class defines the controller to be used with program of study
+ * collection.
+ *
+ * @since 1.0.0
+ */
 class Program_Of_Study_Controller extends Name_DOB_Controller {
 
+	/**
+	 * Validate and save HTTP post data to the model object.
+	 *
+	 * Validates an array of key values (usually from HTTP post) and saves
+	 * values from the array to a model object.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args {
+	 *     Array of key values usually passed in from the PHP $_POST variable.
+	 *
+	 *     @type string $date_of_birth A date of birth.
+	 *     @type string $first_name    A first name.
+	 *     @type string $form_url      URL that the form posted from.
+	 *     @type string $last_name     A last name.
+	 *     @type string $middle_name   A middle name.
+	 *     @type string $no_fill       A field that needs to be blank for the
+	 *                                 form to validate.
+	 * }
+	 *
+	 * @return boolean True if the post fields are populated (even if invalid),
+	 *                 false if the post fields are not populated correctly.
+	 */
 	public function save_data( $post_array ) {
-		$data_not_valid = false;
-		$honey_pot_field = 'no_fill';
+		$data_not_valid                 = false;
+		$honey_pot_field                = 'no_fill';
+		$maximum_first_last_name_length = 32;
+		$maximum_middle_name_length     = 16;
 
 		/*
 		 * Check that all required form fields were posted. On failure load a
@@ -48,19 +93,29 @@ class Program_Of_Study_Controller extends Name_DOB_Controller {
 			);
 			$data_not_valid = true;
 		}
-		if ( ! $this->is_valid_name( $first_name ) ) {
+		if ( ! $this->is_valid_name( $first_name,
+					$maximum_first_last_name_length
+				)
+		) {
 			$this->model->add_error(
 				'First name contains invalid characters.'
 			);
 			$data_not_valid = true;
 		}
-		if ( ! $this->is_valid_name( $last_name ) ) {
+		if ( ! $this->is_valid_name( $last_name,
+					$maximum_first_last_name_length
+				)
+		) {
 			$this->model->add_error(
 				'Last name contains invalid characters.'
 			);
 			$data_not_valid = true;
 		}
-		if ( isset( $middle_name ) && ! $this->is_valid_name( $middle_name ) ) {
+		if ( isset( $middle_name )
+			&& ! $this->is_valid_name( $middle_name,
+					$maximum_middle_name_length
+				)
+		) {
 			$this->model->add_error(
 				'Middle name contains invalid characters.'
 			);

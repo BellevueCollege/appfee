@@ -50,7 +50,7 @@
 										</div>
 										<dir class="col-sm-3 checkbox">
 											<label>
-												<input id="no_middle_name" name="no_middle_name" type="checkbox" class="no_error_message"> No Middle Name
+												<input id="no_middle_name" type="checkbox"> No Middle Name
 											</label>
 										</dir>
 									</div>
@@ -99,47 +99,68 @@
 	<script src="<?php echo $globals_url ?>j/bootstrap.min.js"></script>
 	<script src="<?php echo $globals_url ?>j/g.js"></script>
 	<!-- jQuery Validate -->
-	<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+	<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
+	<!-- moment.js (for date validation) -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
-
 			/*	Date of Birth Validation -- Middle-Endian. Date of birth must be after 1900	*/
 			$.validator.addMethod('dobME', function (value, element) {
-				return this.optional(element) || /^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/((19|[2-9][0-9])[0-9]{2})$/.test(value);
-			}, 'Please enter date of birth in MM/DD/YYYY format');
+				/*	Check against regex to see if date format is valid and date > 1899	*/
+				var isValid = value.match(/^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/((19|[2-9][0-9])[0-9]{2})$/);
+				/*	Store date of birth	*/
+				var dob = moment(value, "M-D-YYYY");
+				/*	If element passes regex and passes moment date validation, check if date is in future	*/
+				if (isValid && dob.isValid()) {
+					var today = new moment(today);
+					if (dob >= today) {
+						isValid = false;
+					}
+					return isValid;
+				}
+			}, 'Please enter a valid date of birth in MM/DD/YYYY format');
 
-			/* Add Letters + Basic Punctuation method from additional-methods.js */
-			$.validator.addMethod('letterswithbasicpunc', function (value, element) {
-				return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
-			}, 'Letters or punctuation only please');
-
+			/* Name validation supporting letters, '_- and space */
+			$.validator.addMethod('validName', function (value, element) {
+				return this.optional(element) || /^[a-z\-_'\s]+$/i.test(value);
+			}, 'Name can only include capital and small letters, single quote, hyphen, and underline');
 			/*  Validate Form   */
 			$('#payment_confirmation').validate({
 				rules: {
 					first_name: {
 						required: true,
-						letterswithbasicpunc: true
+						validName: true
 					},
-
 					last_name: {
 						required: true,
-						letterswithbasicpunc: true
+						validName: true
 					},
 
 					middle_name: {
 						required: '#no_middle_name:unchecked',
-						letterswithbasicpunc: true
+						validName: true
 					},
+
 					date_of_birth: {
 						required: true,
 						dobME: true
 					}
-
 				},
 				messages: {
-					first_name: 'First Name is Required',
-					last_name: 'Last Name is Required',
-					middle_name: 'Please Provide your Middle Name or Check \"No Middle Name\"',
+					first_name: {
+						required: 'First Name is Required',
+						validName: 'First Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
+					last_name: {
+						required: 'Last Name is Required',
+						validName: 'Last Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
+					middle_name: {
+						required: 'Please Provide your Middle Name or Check \"No Middle Name\"',
+						validName: 'Middle Name can only include capital and small letters, single quote, hyphen, and underline'
+					},
 					date_of_birth: {
 						required: 'Date of Birth is Required',
 						dobME: 'Date of Birth must be in MM/DD/YYYY format'
@@ -185,7 +206,6 @@
 		// Check Field Status when things change
 		$('#no_middle_name').change(function () {
 			checkAllowBlank($(this), $('#middle_name'))
-			$('#middle_name').valid()
 		});
 
 		$('#middle_name').keyup(function () {

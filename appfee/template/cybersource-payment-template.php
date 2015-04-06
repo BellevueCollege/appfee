@@ -9,16 +9,12 @@
 
 <head>
 	<title>Confirmation @ Bellevue College</title>
-	<!-- Placed as first element to speed up redirection -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<?php echo $globals_url ?>c/g.css">
 	<link rel="stylesheet" media="print" href="<?php echo $globals_url ?>c/p.css">
-
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo $globals_url ?>j/ghead.js"></script>
 	<!--[if lt IE 9]><script type="text/javascript" src="/<?php echo $globals_url ?>j/respond.js"></script><![endif]-->
 	<link rel='stylesheet' id='open-sans-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0.1' type='text/css' media='all' />
@@ -97,14 +93,6 @@
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-sm-3 control-label">Program of Study Code:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $program_of_study ?>
-											</p>
-										</div>
-									</div>
 									&nbsp;
 									<div class="row">
 										<div class="col-sm-3">
