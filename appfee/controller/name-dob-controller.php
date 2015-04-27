@@ -38,14 +38,23 @@
 require_once( 'default-controller.php' );
 
 /**
- * Name and date of birth controller class defines an extendable controller
+ * Defines the name and date of birth controller
  *
- * This class is intended to be extended by other controllers that need to
- * validate names and dates of birth.
+ * This class defines the controller to be used with processing and validating
+ * name and date of birth information.
  *
  * @since 1.0.0
  */
 class Name_DOB_Controller extends Default_Controller {
+
+	/**
+	 * Array containing data to work with.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array
+	 */
+	protected $data;
 
 	/**
 	 * Contains regular expression to use for date of birth validation.
@@ -89,15 +98,68 @@ class Name_DOB_Controller extends Default_Controller {
 	}
 
 	/**
+	 * Validate data property values.
+	 *
+	 * Validates that all key values are valid in the data array.
+	 *
+	 * @since 1.0.0
+	 * @see Name_DOB_Controller::$data
+	 * @return boolean True if data is valid.
+	 */
+	public function is_valid_data() {
+		$max_first_last_name = 32;
+		$max_middle_name     = 16;
+		$data_valid = true;
+
+		if ( ! $this->is_valid_date_of_birth( $this->data['date_of_birth'] ) ) {
+			$this->model->add_error(
+				'Date of birth is not valid or is in the future.'
+			);
+			$data_valid = false;
+		}
+		if ( ! $this->is_valid_name( $this->data['first_name'],
+					$max_first_last_name
+				)
+		) {
+			$this->model->add_error(
+				'First name contains invalid characters.'
+			);
+			$data_valid = false;
+		}
+		if ( ! $this->is_valid_name( $this->data['last_name'],
+					$max_first_last_name
+				)
+		) {
+			$this->model->add_error(
+				'Last name contains invalid characters.'
+			);
+			$data_valid = false;
+		}
+		if ( isset( $this->data['middle_name'] )
+			&& ! $this->is_valid_name( $this->data['middle_name'], $max_middle_name )
+		) {
+			$this->model->add_error(
+				'Middle name contains invalid characters.'
+			);
+			$data_valid = false;
+		}
+
+		return $data_valid;
+	}
+
+	/**
 	 * Validates a date of birth.
 	 *
 	 * Validates a date of birth using a regular expression for date format and
 	 * the PHP checkdate() function.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @see Name_DOB_Controller::$regex_date_of_birth
+	 *
 	 * @param string $date_of_birth A date of birth.
-	 * @return boolean True for valid, false for invalid.
+	 *
+	 * @return boolean              True for valid, false for invalid.
 	 */
 	public function is_valid_date_of_birth( $date_of_birth ) {
 		$is_valid_date = preg_match(
@@ -120,6 +182,31 @@ class Name_DOB_Controller extends Default_Controller {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Validate data property keys.
+	 *
+	 * Validates that all required keys exsist in the data array.
+	 *
+	 * @since 1.0.0
+	 * @see Name_DOB_Controller::$data
+	 * @return boolean True if keys are valid.
+	 */
+	public function is_valid_keys() {
+		$honey_pot_field = 'no_fill';
+		if ( ! empty( $this->data['form_url'] )
+			&& ! empty( $this->data['date_of_birth'] )
+			&& ! empty( $this->data['first_name'] )
+			&& ! empty( $this->data['last_name'] )
+			&& ( array_key_exists( $honey_pot_field, $this->data )
+				&& empty( $this->data[ $honey_pot_field ] )
+			)
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -147,5 +234,73 @@ class Name_DOB_Controller extends Default_Controller {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Process an array of data.
+	 *
+	 * Process data passed in by the data parameter.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see Name_DOB_Controller::$data
+	 *
+	 * @param array $data {
+	 *     Array of key values usually passed in from the PHP $_POST variable.
+	 *
+	 *     @type string $date_of_birth A date of birth.
+	 *     @type string $first_name    A first name.
+	 *     @type string $form_url      URL that the form posted from.
+	 *     @type string $last_name     A last name.
+	 *     @type string $middle_name   A middle name.
+	 *     @type string $no_fill       A field that needs to be blank for the
+	 *                                 keys to validate.
+	 * }
+	 *
+	 * @return boolean                 True if data processes sucessfully.
+	 */
+	public function process_data( $data ) {
+		// Set the data property.
+		$this->data = $data;
+
+		// Set middle name to null if it is empty.
+		if ( empty( $post_array['middle_name'] ) ) {
+			$post_array['middle_name'] = null;
+		}
+
+		// Validate array for expected key values.
+		if ( ! $this->is_valid_keys() ) {
+			$this->model->set_template_uri(
+				'template/blank-page-template.php'
+			);
+			return false;
+		}
+
+		// Validate array data.
+		if ( ! $this->is_valid_data() ) {
+			$this->model->set_redirect_url( $this->data['form_url'] );
+			$this->model->set_template_uri(
+				'template/error-redirect-template.php'
+			);
+			return false;
+		}
+
+		// If all went well save variables.
+		$this->save_variables();
+		return true;
+	}
+
+	/**
+	 * Save data variables to model object.
+	 *
+	 * Helper function that saves data to the model object.
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_variables() {
+		$this->model->set_date_of_birth( $this->data['date_of_birth'] );
+		$this->model->set_first_name( $this->data['first_name'] );
+		$this->model->set_last_name( $this->data['last_name'] );
+		$this->model->set_middle_name( $this->data['middle_name'] );
 	}
 }
