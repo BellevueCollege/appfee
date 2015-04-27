@@ -73,14 +73,14 @@ $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
 	case 'general-admissions':
 		/**
-		 * Load class file for Student Name DOB Model.
+		 * Load class file for Form Post Model.
 		 */
-		require( 'model/student-name-dob-model.php' );
+		require( 'model/form-post-model.php' );
 
 		/**
-		 * Load class file for Student Name DOB View.
+		 * Load class file for Form Post View.
 		 */
-		require( 'view/student-name-dob-view.php' );
+		require( 'view/form-post-view.php' );
 
 		// Configuration objects and variables.
 		$post_url = 'https://'
@@ -91,13 +91,13 @@ switch ( $application_uri ) {
 		$resource_library_configuration = new HTML_Resource_Library();
 
 		// Model view controller objects.
-		$model = new Student_Name_DOB_Model(
+		$model = new Form_Post_Model(
 			'template/student-name-dob-template.php',
 			$resource_library_configuration,
 			$post_url
 		);
 		$controller = NULL;
-		$view = new Student_Name_DOB_View( $controller, $model );
+		$view = new Form_Post_View( $controller, $model );
 
 		// View and controller actions.
 		echo $view->get_output();
