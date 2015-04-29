@@ -325,8 +325,6 @@ class Cybersource_Payment_Model extends Name_DOB_Model {
 			'access_key' => &$this->access_key,
 			'bill_to_address_country' => &$this->bill_to_address_country,
 			'bill_to_address_state' => &$this->bill_to_address_state,
-			'bill_to_forename' => &$this->first_name,
-			'bill_to_surname' => &$this->last_name,
 			'currency' => &$this->currency,
 			'customer_ip_address' => &$this->customer_ip_address,
 			'item_0_name' => &$this->item_0_name,
