@@ -172,7 +172,6 @@ switch ( $application_uri ) {
 		$view = new Cybersource_Payment_View( $controller, $model );
 
 		// View and controller actions.
-		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;
 
