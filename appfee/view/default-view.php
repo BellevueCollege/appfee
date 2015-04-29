@@ -61,6 +61,15 @@ class Default_View {
 	protected $model;
 
 	/**
+	 * Array of variables with values to be used in the template file.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array
+	 */
+	protected $template_variables;
+
+	/**
 	 * Default view constructor.
 	 *
 	 * Populates the controller and model properties from the constructor
@@ -88,12 +97,35 @@ class Default_View {
 	 * @since 1.0.0
 	 */
 	public function get_output() {
-		$current_url = $this->model->get_current_url();
-		$errors = $this->model->get_errors();
-		$globals_path = $this->model->get_globals_path();
-		$globals_url  = $this->model->get_globals_url();
-		$redirect_url = $this->model->get_redirect_url();
-		$template_uri = $this->model->get_template_uri();
+		$this->set_template_variables();
+		extract( $this->template_variables );
 		require( $template_uri );
+	}
+
+	/**
+	 * Set template variables
+	 *
+	 * Helper method that populates the template variables property.
+	 *
+	 * @since 1.0.0
+	 * @see Default_Model::$template_variables
+	 */
+	protected function set_template_variables() {
+		$this->template_variables['current_url'] =
+			$this->model->get_current_url()
+		;
+		$this->template_variables['errors'] = $this->model->get_errors();
+		$this->template_variables['globals_path'] =
+			$this->model->get_globals_path()
+		;
+		$this->template_variables['globals_url'] =
+			$this->model->get_globals_url()
+		;
+		$this->template_variables['redirect_url'] =
+			$this->model->get_redirect_url()
+		;
+		$this->template_variables['template_uri'] =
+			$this->model->get_template_uri()
+		;
 	}
 }

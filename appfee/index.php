@@ -43,7 +43,7 @@ require( 'include/configuration-structures.php' );
  * @since 1.0.0
  * @var string
  */
-define( 'VERSION_NUMBER', '0.3.0.4' );
+define( 'VERSION_NUMBER', '0.4.0.0' );
 
 // Set the timezone.
 date_default_timezone_set( TIMEZONE );
@@ -73,14 +73,14 @@ $application_uri = substr( $request_uri, strlen( $base_uri ) );
 switch ( $application_uri ) {
 	case 'general-admissions':
 		/**
-		 * Load class file for Student Name DOB Model.
+		 * Load class file for Form Post Model.
 		 */
-		require( 'model/student-name-dob-model.php' );
+		require( 'model/form-post-model.php' );
 
 		/**
-		 * Load class file for Student Name DOB View.
+		 * Load class file for Form Post View.
 		 */
-		require( 'view/student-name-dob-view.php' );
+		require( 'view/form-post-view.php' );
 
 		// Configuration objects and variables.
 		$post_url = 'https://'
@@ -91,13 +91,13 @@ switch ( $application_uri ) {
 		$resource_library_configuration = new HTML_Resource_Library();
 
 		// Model view controller objects.
-		$model = new Student_Name_DOB_Model(
+		$model = new Form_Post_Model(
 			'template/student-name-dob-template.php',
 			$resource_library_configuration,
 			$post_url
 		);
 		$controller = NULL;
-		$view = new Student_Name_DOB_View( $controller, $model );
+		$view = new Form_Post_View( $controller, $model );
 
 		// View and controller actions.
 		echo $view->get_output();
@@ -105,19 +105,19 @@ switch ( $application_uri ) {
 
 	case 'general-admissions/program-of-study':
 		/**
-		 * Load class file for Program Of Study Model.
+		 * Load class file for Name & Date of Birth Model.
 		 */
-		require( 'model/program-of-study-model.php' );
+		require( 'model/name-dob-model.php' );
 
 		/**
-		 * Load class file for Program Of Study Controller.
+		 * Load class file for Name & Date of Birthy Controller.
 		 */
-		require( 'controller/program-of-study-controller.php' );
+		require( 'controller/name-dob-controller.php' );
 
 		/**
-		 * Load class file for Program Of Study View.
+		 * Load class file for Name & Date of Birth View.
 		 */
-		require( 'view/program-of-study-view.php' );
+		require( 'view/name-dob-view.php' );
 
 		// Configuration objects and variables.
 		$post_url = 'https://'
@@ -128,16 +128,15 @@ switch ( $application_uri ) {
 		$resource_library_configuration = new HTML_Resource_Library();
 
 		// Model view controller objects.
-		$model = new Program_Of_Study_Model(
+		$model = new Name_DOB_Model(
 			'template/program-of-study-template.php',
 			$resource_library_configuration,
 			$post_url
 		);
-		$controller = new Program_Of_Study_Controller( $model );
-		$view = new Program_Of_Study_View( $controller, $model );
+		$controller = new Name_DOB_Controller( $model );
+		$view = new Name_DOB_View( $controller, $model );
 
-		// View and controller actions.
-		$controller->save_data( $_POST );
+		// Display Output
 		echo $view->get_output();
 		break;
 
@@ -173,7 +172,6 @@ switch ( $application_uri ) {
 		$view = new Cybersource_Payment_View( $controller, $model );
 
 		// View and controller actions.
-		$controller->save_data( $_POST );
 		echo $view->get_output();
 		break;
 

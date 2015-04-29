@@ -19,10 +19,9 @@
  */
 
 /**
- * Student name and date of birth view class file
+ * Name and date of birth view class file
  *
- * This file contains the Student_Name_DOB_View class that extends the default
- * view.
+ * This file contains the Name_DOB_View class that extends the form post view.
  *
  * @copyright 2015 Bellevue College
  * @license GNU General Public License, version 2
@@ -33,35 +32,42 @@
  */
 
 /**
- * Load the the default view class.
+ * Load the the form post view class.
  */
-require_once( 'default-view.php' );
+require_once( 'form-post-view.php' );
 
 /**
- * Defines the student name and date of birth view
+ * Defines the name and date of birth view
  *
- * This class defines the view to be used with student name and date of birth
- * collection.
+ * This class defines the view to be used with displaying name and date of birth
+ * information.
  *
  * @since 1.0.0
  */
-class Student_Name_DOB_View extends Default_View {
+class Name_DOB_View extends Form_Post_View {
 
 	/**
-	 * Set template variables and get template output.
+	 * Set template variables
 	 *
-	 * Set the variables needed for the template and load the template getting
-	 * the template HTML output.
+	 * Helper method that populates the template variables property.
 	 *
 	 * @since 1.0.0
+	 * @see Default_Model::$template_variables
 	 */
-	public function get_output() {
-		$current_url = $this->model->get_current_url();
-		$errors = $this->model->get_errors();
-		$form_post_url = $this->model->get_form_post_url();
-		$globals_path = $this->model->get_globals_path();
-		$globals_url  = $this->model->get_globals_url();
-		$template_uri = $this->model->get_template_uri();
-		require( $template_uri );
+	protected function set_template_variables() {
+		$this->controller->process_data( $_POST );
+		parent::set_template_variables();
+		$this->template_variables['student_date_of_birth'] =
+			$this->model->get_date_of_birth()
+		;
+		$this->template_variables['student_first_name'] =
+			$this->model->get_first_name()
+		;
+		$this->template_variables['student_last_name'] =
+			$this->model->get_last_name()
+		;
+		$this->template_variables['student_middle_name'] =
+			$this->model->get_middle_name()
+		;
 	}
 }
