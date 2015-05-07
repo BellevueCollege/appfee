@@ -8,7 +8,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Confirmation @ Bellevue College</title>
+	<title>Proceed to Payment @ Bellevue College</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,9 +31,7 @@
 						<div class="row row-padding">
 							<p class='entry-title'>&nbsp;</p>
 							<div class="content-padding">
-								<h1>Submission Confirmation</h1>
-								<p class="lead">Please verify your information below:</p>
-
+								<h1>Proceed to Payment</h1>
 								<form class="form-horizontal" id="payment_confirmation" name="payment_confirmation" action="<?php echo $form_post_url ?>" method="post">
 									<input type="hidden" id="access_key" name="access_key" value="<?php echo $cybersource_access_key ?>" />
 									<input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="<?php echo $bill_to_address_country ?>" />
@@ -58,38 +56,7 @@
 									<input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $transaction_uuid ?>" />
 									<input type="hidden" id="unsigned_field_names" name="unsigned_field_names" value="<?php echo $unsigned_field_names ?>" />
 									<input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" />
-									<div class="row">
-										<div class="col-sm-3 control-label">Student First Name:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $student_first_name ?>
-											</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-3 control-label">Student Middle Name:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $student_middle_name ?>
-											</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-3 control-label">Student Last Name:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $student_last_name ?>
-											</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-3 control-label">Student Date of Birth:</div>
-										<div class="col-sm-9">
-											<p class="form-control-static">
-												<?php echo $student_date_of_birth ?>
-											</p>
-										</div>
-									</div>
+									<p class="lead">Thank you <?php echo $student_first_name ?>! Please review our payment policy below, then continue to payment.
 									<h2>Payment Policy</h2>
 									<p>The $34.00 college admissions fee is generally not refundable unless it is determined that either the payment was made in error; the applicant is not eligible for admissions (e.g. under-age); or an appeal is granted through the college’s appeals process.  If the payment is made in error or an appeal is granted, a refund will be processed within thirty (30) days of that determination.</p>
 									&nbsp;
