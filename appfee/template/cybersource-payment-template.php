@@ -90,7 +90,8 @@
 											</p>
 										</div>
 									</div>
-
+									<h2>Payment Policy</h2>
+									<p>The $34.00 college admissions fee is generally not refundable unless it is determined that either the payment was made in error; the applicant is not eligible for admissions (e.g. under-age); or an appeal is granted through the college’s appeals process.  If the payment is made in error or an appeal is granted, a refund will be processed within thirty (30) days of that determination.</p>
 									&nbsp;
 									<div class="row">
 										<div class="col-sm-3">
