@@ -264,8 +264,8 @@ class Name_DOB_Controller extends Default_Controller {
 		$this->data = $data;
 
 		// Set middle name to null if it is empty.
-		if ( empty( $post_array['middle_name'] ) ) {
-			$post_array['middle_name'] = null;
+		if ( empty( $this->data['middle_name'] ) ) {
+			$this->data['middle_name'] = null;
 		}
 
 		// Validate array for expected key values.
