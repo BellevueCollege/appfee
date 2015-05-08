@@ -135,7 +135,7 @@ class Name_DOB_Controller extends Default_Controller {
 			);
 			$data_valid = false;
 		}
-		if ( isset( $this->data['middle_name'] )
+		if ( ! empty( $this->data['middle_name'] )
 			&& ! $this->is_valid_name( $this->data['middle_name'], $max_middle_name )
 		) {
 			$this->model->add_error(
@@ -263,11 +263,6 @@ class Name_DOB_Controller extends Default_Controller {
 		// Set the data property.
 		$this->data = $data;
 
-		// Set middle name to null if it is empty.
-		if ( empty( $post_array['middle_name'] ) ) {
-			$post_array['middle_name'] = null;
-		}
-
 		// Validate array for expected key values.
 		if ( ! $this->is_valid_keys() ) {
 			$this->model->set_template_uri(
@@ -298,6 +293,11 @@ class Name_DOB_Controller extends Default_Controller {
 	 * @since 1.0.0
 	 */
 	public function save_variables() {
+		// Set middle name to null if it is empty.
+		if ( empty( $this->data['middle_name'] ) ) {
+			$this->data['middle_name'] = null;
+		}
+
 		$this->model->set_date_of_birth( $this->data['date_of_birth'] );
 		$this->model->set_first_name( $this->data['first_name'] );
 		$this->model->set_last_name( $this->data['last_name'] );
