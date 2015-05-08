@@ -8,7 +8,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Program of Student Declaration @ Bellevue College</title>
+	<title>Program of Study Declaration @ Bellevue College</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,16 @@
 							<div class="content-padding">
 								<p class='entry-title'>&nbsp;</p>
 								<h1>Program of Study Declaration</h1>
-								<p class="lead">Let us know your plans! Please use the form below to select your program of study.</p>
+								<p class="lead">As a new student it is important to make an initial program declaration. Whether you plan to complete a certificate or degree, or are taking classes to fulfill other interests, the following brief questions will direct you to an appropriate selection specific to Bellevue College. </p>
+								<p>Please select from one of the options below, including “undecided” if that is your status at this time. If you need to change or modify your selection at a later date, you can schedule an appointment with an academic advisor or, alternatively, a financial aid advisor if you are pursuing financial aid.</p>
+
+								<p>The college uses this information in various ways:</p>
+								<ul>
+									<li>This selection will affect the information your academic advisor will use to help you choose your classes and track your progress toward degrees and certificates.</li>
+									<li>The college must regularly report on enrollment trends, which is especially important in program areas whose funding depends on it.</li>
+									<li>Federal law requires you to be enrolled in an eligible program of study to receive financial aid. If you haven't declared a degree or certificate program on your academic record, all financial aid awards will be put on hold until you choose your program of study. Please take special note of those programs with limited or no financial aid coverage which are indicated below.</li>
+								</ul>
+								<hr />
 								<form id="student_intent" name="student_intent" action="<?php echo $form_post_url ?>" method="post">
 									<input type="hidden" id="form_url" name="form_url" value="<?php echo $current_url  ?>" />
 									<input type="hidden" id="first_name" name="first_name" value="<?php echo $student_first_name ?>" />
@@ -70,22 +79,24 @@
 													<div class="input-container">
 														<div class="radio">
 															<label>
-																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree</label>
+																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree
+															</label>
+															<a tabindex="0" href="#" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Transfer Degree" data-content="Our two-year transfer associate degrees are for students wishing to pursue a bachelor’s degree at a four year university.  <a href='//www.bellevuecollege.edu/programs/degrees/transfer/' target='_blank'>More Transfer Degree information</a>."><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
 														</div>
 														<!-- .radio -->
 													</div>
 													<div class="input-container">
 														<div class="radio">
 															<label>
-																<input type="radio" name="what_degree" id="what_degree_proftech" value="proftech" aria-describedby="which_degree_heading" aria-required="true" required> Professional Technical Degree
+																<input type="radio" name="what_degree" id="what_degree_proftech" value="proftech" aria-describedby="which_degree_heading" aria-required="true" required> Professional Technical Degree or Certificate
 															</label>
 														</div>
 														<!-- .radio -->
 
 														<div class="conditional-group form-group" id="proftech_type">
-															<label class="sr-only" for="proftech_type_selector">Select a Professional Technical Degree:</label>
+															<label class="sr-only" for="proftech_type_selector">Select a Professional Technical Degree or Certificate:</label>
 															<select class="form-control" id="proftech_type_selector" name="proftech_type" aria-required="true" required>
-																<option value="" disabled selected>Select your option</option>
+																<option value="" disabled selected>Select an option</option>
 																<option value="505J">Accounting - 90 Credit AA Program </option>
 																<option value="505K">Accounting - 97 Credit AAS-T Program </option>
 																<option value="505D">Accounting: Accounting Assistant - 46 Credit Certificate Program </option>
@@ -96,7 +107,7 @@
 																<option value="437">Alcohol &amp; Drug Counseling - 46 Credit Certificate Program </option>
 																<option value="328">Allied Health - 90 Credit AAS-T Program </option>
 																<option value="310B">Allied Health: Clinical Lab Assistant - 29 Credit Certificate Program </option>
-																<option value=310C "">Allied Health: Clinical Lab Assistant - 45 Credit Certificate Program </option>
+																<option value="310C">Allied Health: Clinical Lab Assistant - 45 Credit Certificate Program </option>
 																<option value="391A">Allied Health: Emergency Department Technician - 44 Credit Certificate Program </option>
 																<option value="391C">Allied Health: Emergency Department Technician - 50 Credit Certificate Program </option>
 																<option value="532D">Allied Health: Health Unit Coordinator - 50 Credit Certificate Program </option>
@@ -190,7 +201,7 @@
 											<div class="input-container">
 												<div class="radio">
 													<label>
-														<input type="radio" name="taking_degree" id="taking_degree_no" value="no" aria-describedby="complete_degree_heading" required> No
+														<input type="radio" name="taking_degree" id="taking_degree_no" value="no" aria-describedby="complete_degree_heading" aria-required="true" required> No
 													</label>
 												</div>
 												<div class="conditional-group form-group">
@@ -199,6 +210,8 @@
 														<label>
 															<input type="radio" name="no_degree" id="no_degree_preq" value="PREQ" aria-describedby="no_degree_heading" aria-required="true" required> Taking Prerequisites
 														</label>
+														<a tabindex="0" href="#" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Taking Prerequisites" data-content="A prerequisite is a course that must be completed or a skill that must be demonstrated before you can enroll in a more advanced course. <br /><br />Some students attend Bellevue College for a short term period because prerequisite classes are available here that can be applied to advanced course requirements at another institution."><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+
 													</div>
 													<div class="radio">
 														<label>
@@ -305,6 +318,11 @@
 				}
 			});
 		});
+
+		// Initialize Popover functionality in Bootstrap
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
 	</script>
 </body>
 
