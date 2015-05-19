@@ -209,7 +209,7 @@
 														<label>
 															<input type="radio" name="no_degree" id="no_degree_preq" value="PREQ" aria-describedby="no_degree_heading" aria-required="true" required> Taking Prerequisites
 														</label>
-														<a tabindex="0" href="#" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Taking Prerequisites" data-content="A prerequisite is a course that must be completed or a skill that must be demonstrated before you can enroll in a more advanced course. <br /><br />Some students attend Bellevue College for a short term period because prerequisite classes are available here that can be applied to advanced course requirements at another institution."><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+														<a tabindex="0" href="#" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Taking Prerequisites" data-content="A prerequisite is a course or set of courses that must be completed or a skill that must be demonstrated before you can enroll in a more advanced course, whether at Bellevue College or elsewhere."><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
 
 													</div>
 													<div class="radio">
