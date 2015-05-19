@@ -47,13 +47,12 @@
 							<div class="content-padding">
 								<p class='entry-title'>&nbsp;</p>
 								<h1>Program of Study Declaration</h1>
-								<p class="lead">As a new student it is important to make an initial program declaration. Whether you plan to complete a certificate or degree, or are taking classes to fulfill other interests, the following brief questions will direct you to an appropriate selection specific to Bellevue College. </p>
-								<p>Please select from one of the options below, including “undecided” if that is your status at this time. If you need to change or modify your selection at a later date, you can schedule an appointment with an academic advisor or, alternatively, a financial aid advisor if you are pursuing financial aid.</p>
+								<p class="lead">As a new student it is important to make an initial program declaration. Whether you plan to complete a certificate or degree, or are taking classes to fulfill other interests, the following brief questions will help you to do so. If you need to change or modify your selection at a later date, you can schedule an appointment with an academic or financial aid advisor.</p>
 
 								<p>The college uses this information in various ways:</p>
 								<ul>
-									<li>This selection will affect the information your academic advisor will use to help you choose your classes and track your progress toward degrees and certificates.</li>
-									<li>The college must regularly report on enrollment trends, which is especially important in program areas whose funding depends on it.</li>
+									<li>This selection will affect the information your academic advisor and automated systems will use to help you choose your classes and track your progress toward degrees and certificates.</li>
+									<li>The college must regularly report on enrollment and completion trends, which are especially important for accreditation and for some program funding needs.</li>
 									<li>Federal law requires you to be enrolled in an eligible program of study to receive financial aid. If you haven't declared a degree or certificate program on your academic record, all financial aid awards will be put on hold until you choose your program of study. Please take special note of those programs with limited or no financial aid coverage which are indicated below.</li>
 								</ul>
 								<hr />
