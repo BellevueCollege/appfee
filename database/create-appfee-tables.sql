@@ -20,7 +20,7 @@
 USE [ODS]
 GO
 
-/****** Object:  Table [dbo].[BCAdmission]    Script Date: 04/06/2015 09:23:23 ******/
+/****** Object:  Table [dbo].[BCAdmission]    Script Date: 06/29/2015 11:23:59 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -31,7 +31,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[BCAdmission](
-	[ReferenceNumber] [int] IDENTITY(1,1) NOT NULL,
+	[ReferenceNumber] [int] IDENTITY(110,1) NOT NULL,
 	[FirstName] [varchar](32) NOT NULL,
 	[LastName] [varchar](32) NOT NULL,
 	[MiddleName] [varchar](16) NULL,
@@ -39,10 +39,10 @@ CREATE TABLE [dbo].[BCAdmission](
 	[Amount] [decimal](10, 2) NULL,
 	[ProgramofStudy] [varchar](255) NULL,
 	[ReferenceNumberCreation] [datetime] NOT NULL,
-	[BillingFirstName] [varchar](32) NULL,
-	[BillingLastName] [varchar](32) NULL,
-	[BillingEmail] [varchar](200) NULL,
-	[BillingPhoneNumber] [varchar](10) NULL,
+	[BillingFirstName] [varchar](60) NULL,
+	[BillingLastName] [varchar](60) NULL,
+	[BillingEmail] [varchar](255) NULL,
+	[BillingPhoneNumber] [varchar](15) NULL,
 	[PaymentAuthorization] [datetime] NULL,
 	[PaymentSettled] [datetime] NULL,
  CONSTRAINT [PK_Admission] PRIMARY KEY CLUSTERED
