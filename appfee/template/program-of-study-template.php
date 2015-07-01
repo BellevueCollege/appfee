@@ -78,7 +78,7 @@
 													<div class="input-container">
 														<div class="radio">
 															<label>
-																<input type="radio" name="what_degree" id="what_degree_trans" value="TRANS" aria-describedby="which_degree_heading" required>Transfer Degree
+																<input type="radio" name="what_degree" id="what_degree_trans" value="AAD" aria-describedby="which_degree_heading" required>Transfer Degree
 															</label>
 															<a tabindex="0" href="#" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Transfer Degree" data-content="Our two-year transfer associate degrees are for students wishing to pursue a bachelor’s degree at a four year university. <a href='//www.bellevuecollege.edu/programs/degrees/transfer/' target='_blank'>More Transfer Degree information</a>."><span class="sr-only">More Information</span><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
 														</div>
