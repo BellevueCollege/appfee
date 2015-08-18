@@ -145,9 +145,8 @@
 																<option value="333A">Neurodiagnostic Technology - 103 Credit AA Program </option>
 																<option value="2500">General Studies Non-Transfer Degree (Limited or No Financial Aid) </option>
 																<option value="521A">Healthcare Informatics - 46 Credit Certificate Program </option>
-																<option value="515V">Information Systems - 91 Credit AAS-T Program </option>
-																<option value="515X">Information Systems - Database Administration - 91 Credit AAS-T Program </option>
 																<option value="515Y">Information Systems - Software Developer - 91 Credit AAS-T Program </option>
+																<option value="515Z">Information Systems – Business Analyst – 90 - 91 Credit AAS-T Program</option>
 																<option value="527N">Information Systems: Cloud Technologies - 10 Credit Certificate Program (Limited or No Financial Aid) </option>
 																<option value="503L">Information Systems: Database Analyst - 30 Credit Certificate Program </option>
 																<option value="503N">Information Systems: Intermediate Business Intelligence Developer - 30 Credit Certificate Program </option>

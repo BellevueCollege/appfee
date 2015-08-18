@@ -43,7 +43,7 @@ require( 'include/configuration-structures.php' );
  * @since 1.0.0
  * @var string
  */
-define( 'VERSION_NUMBER', '1.0.2' );
+define( 'VERSION_NUMBER', '1.0.2.1' );
 
 // Set the timezone.
 date_default_timezone_set( TIMEZONE );
