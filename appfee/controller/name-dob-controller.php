@@ -302,5 +302,6 @@ class Name_DOB_Controller extends Default_Controller {
 		$this->model->set_first_name( $this->data['first_name'] );
 		$this->model->set_last_name( $this->data['last_name'] );
 		$this->model->set_middle_name( $this->data['middle_name'] );
+                $this->model->set_year_quarter_applied_for($this->data['yrq']);
 	}
 }

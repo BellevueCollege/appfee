@@ -312,14 +312,15 @@ class Cybersource_Payment_Model extends Name_DOB_Model {
 		parent::__construct(
 			$template_uri,
 			$globals_configuration,
-			$cybersource_configuration->get_form_post_url()
+			$cybersource_configuration->get_form_post_url(),
+                        $database_configuration
 		);
-
+/*
 		$this->database_connection = new PDO(
 			$database_configuration->get_data_source_name(),
 			$database_configuration->get_username(),
 			$database_configuration->get_password()
-		);
+		);*/
 
 		$this->signed_fields_to_variables_map = array(
 			'access_key' => &$this->access_key,
@@ -658,9 +659,11 @@ class Cybersource_Payment_Model extends Name_DOB_Model {
 			. ' @MiddleName = :middle_name,'
 			. ' @DOB = :date_of_birth,'
 			. ' @Amount = :amount,'
-			. ' @POS = :program_of_study'
+			. ' @POS = :program_of_study,'
+                        . ' @YRQ = :yrq'
 			. ';'
 		;
+                
 		$values = array(
 			':first_name'       => $this->first_name,
 			':last_name'        => $this->last_name,
@@ -668,11 +671,13 @@ class Cybersource_Payment_Model extends Name_DOB_Model {
 			':date_of_birth'    => $this->date_of_birth,
 			':amount'           => $this->item_0_unit_price,
 			':program_of_study' => $this->program_of_study,
+                        ':yrq'              => $this->year_quarter_applied_for
 		);
+                
 		$query = $this->database_connection->prepare( $tsql );
 		$query->execute( $values );
 		$result_array = $query->fetch();
-
+                
 		if ( ! isset( $result_array['ReferenceNumber'] )
 			|| ! ctype_digit( $result_array['ReferenceNumber'] )
 		) {

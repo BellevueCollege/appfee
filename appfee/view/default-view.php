@@ -127,5 +127,8 @@ class Default_View {
 		$this->template_variables['template_uri'] =
 			$this->model->get_template_uri()
 		;
+                $this->template_variables['active_yrq_options'] = 
+                       $this->model->get_active_year_quarters();               
+                
 	}
 }

@@ -102,7 +102,8 @@ class Default_Model {
 	 * @param object $globals_configuration HTML resource configuration object.
 	 */
 	public function __construct( $template_uri,
-		$globals_configuration = null
+		$globals_configuration = null,
+                $database_configuration
 	) {
 		$this->template_uri = $template_uri;
 		if ( isset( $globals_configuration ) ) {
@@ -110,8 +111,57 @@ class Default_Model {
 			$this->globals_url = $globals_configuration->get_url();
 		}
 		$this->errors = array();
+                $this->database_connection = new PDO(
+			$database_configuration->get_data_source_name(),
+			$database_configuration->get_username(),
+			$database_configuration->get_password()
+		);
 	}
-
+/**
+         * Get Active Year Quarters
+         **/
+        public function get_active_year_quarters()
+        {
+            try{
+			$active_yrq_sql = " EXEC usp_getActiveYearQuarter; "; 
+			$query = $this->database_connection->prepare($active_yrq_sql); 
+			$query->execute();			
+			$active_yrq_options = $query->fetchAll(PDO::FETCH_ASSOC);
+                        //var_dump($active_yrq_options);
+                        if(!empty($active_yrq_options))
+                        { 
+                            for($i=0;$i<count($active_yrq_options);$i++)
+                            {
+                                $yrq_id = $active_yrq_options[$i]['YearQuarterID'];
+                                $yrq_title = $active_yrq_options[$i]['Title'];
+                                $explode_title = explode(' ',$yrq_title);
+                                $quarter = '';
+                                switch($explode_title[0])
+                                {
+                                        case 'Spr':
+                                                $quarter = 'Spring';
+                                                break;
+                                        case 'Sum':
+                                                $quarter = 'Summer';
+                                                break;
+                                        case 'Win':
+                                                $quarter = 'Winter';
+                                                break;
+                                        case 'Fall':
+                                                $quarter = 'Fall';
+                                                break;
+                                }
+                                $quarter_title = $quarter. ' '.$explode_title[1];
+                                $active_yrq_options[$i]['Title'] = $quarter_title;
+                            }
+                        }
+			return $active_yrq_options;
+		}catch(PDOException $e)
+		{
+			echo 'ERROR: ' . $e->getMessage();
+		}
+		return null;
+        }
 	/**
 	 * Add error messages to the errors property.
 	 *

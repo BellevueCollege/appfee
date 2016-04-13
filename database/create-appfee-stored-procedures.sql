@@ -46,8 +46,8 @@ CREATE PROCEDURE [dbo].[usp_WebAppFee]
 	@MiddleName varchar(16),
 	@DOB datetime,
 	@Amount decimal(10,2),
-	@POS varchar(255)
-
+	@POS varchar(255),
+        @YRQ char(4)
 AS
 BEGIN
 
@@ -61,6 +61,7 @@ BEGIN
 		, DOB
 		, Amount
 		, ProgramofStudy
+                , YRQ
 		)
 	OUTPUT INSERTED.ReferenceNumber VALUES (
 		  @FirstName
@@ -69,6 +70,7 @@ BEGIN
 		, @DOB
 		, @Amount
 		, @POS
+                , @YRQ
 		)
 END
 

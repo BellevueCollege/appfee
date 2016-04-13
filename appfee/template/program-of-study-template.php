@@ -62,6 +62,7 @@
 									<input type="hidden" id="last_name" name="last_name" value="<?php echo $student_last_name ?>" />
 									<input type="hidden" id="middle_name" name="middle_name" value="<?php echo $student_middle_name ?>" />
 									<input type="hidden" id="date_of_birth" name="date_of_birth" value="<?php echo $student_date_of_birth ?>" />
+                                                                        <input type="hidden" id="yrq" name="yrq" value="<?php echo $student_yrq ?>" />
 									<div class="row">
 										<div class="col-sm-10 col-sm-offset-1 form-group">
 											<p class="radio-heading" id="complete_degree_heading">Are you planning to complete a degree or certificate at Bellevue College?</p>

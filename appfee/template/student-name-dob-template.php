@@ -67,6 +67,26 @@
 											<p id="dob_help_block" class="sr-only help-block">Enter your Date of Birth in MM/DD/YYYY format</p>
 										</div>
 									</div>
+                                                                        <div class="form-group">
+										<label for="yrq" class="col-sm-3 control-label">Which Year Quarter are you applying for?:*</label>
+										<div class="col-sm-4">
+                                                                                    <select class="form-control" id="yrq" name="yrq"  aria-required="true" aria-describedby="dob_help_block" required >
+                                                                                         <?php //var_dump($active_yrq_options);
+                                                                                            for($i=0;$i<count($active_yrq_options);$i++)
+                                                                                            {
+                                                                                                $yrq_id = $active_yrq_options[$i]['YearQuarterID'];
+                                                                                                $yrq_title = $active_yrq_options[$i]['Title'];
+                                                                                        ?>
+                                                                                            <option value="<?php echo $yrq_id ;?>"><?php echo $yrq_title ;?></option>
+                                                                                        <?php
+                                                                                            }
+                                                                                          ?>
+                                                                                        
+                                                                                    </select>
+											
+										</div>
+									</div>
+                                                                       
 									<label for="no_fill" class="sr-only" aria-hidden="true">If you are human, leave this field blank!</label>
 									<input type="text" maxlength="10" class="sr-only" id="no_fill" name="no_fill" aria-hidden="true" tabindex="-1" />
 									<div class="form-group">

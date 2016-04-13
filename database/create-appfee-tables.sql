@@ -45,6 +45,7 @@ CREATE TABLE [dbo].[BCAdmission](
 	[BillingPhoneNumber] [varchar](15) NULL,
 	[PaymentAuthorization] [datetime] NULL,
 	[PaymentSettled] [datetime] NULL,
+        [YRQ][char](4) NOT NULL,
  CONSTRAINT [PK_Admission] PRIMARY KEY CLUSTERED
 (
 	[ReferenceNumber] ASC

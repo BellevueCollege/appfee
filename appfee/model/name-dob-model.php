@@ -46,6 +46,14 @@ require_once( 'form-post-model.php' );
  */
 class Name_DOB_Model extends Form_Post_Model {
 
+    /**
+	 * A year quarter applied for.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var string
+	 */
+	protected $year_quarter_applied_for;
 	/**
 	 * A date of birth.
 	 *
@@ -82,6 +90,35 @@ class Name_DOB_Model extends Form_Post_Model {
 	 */
 	protected $middle_name;
 
+        
+        public function __construct(
+		$template_uri,
+		$globals_configuration,
+                $post_url,
+                $database_configuration
+		
+	) {
+		parent::__construct(
+			$template_uri,
+			$globals_configuration,
+			$post_url,
+                        $database_configuration
+		);
+                
+        }
+        /**
+	 * Get the Year Quarter applied for.
+	 *
+	 * Helper method that returns the year quarter applied for.
+	 *
+	 * @since 1.0.0
+	 * @see Name_DOB_Model::$year_quarter_applied_for
+	 * @return string year quarter applied for.
+	 */
+	public function get_year_quarter_applied_for() {
+		return $this->year_quarter_applied_for;
+	}
+        
 	/**
 	 * Get the date of birth.
 	 *
@@ -132,6 +169,19 @@ class Name_DOB_Model extends Form_Post_Model {
 	 */
 	public function get_middle_name() {
 		return $this->middle_name;
+	}
+        
+        /**
+	 * Set the year quarter applied for.
+	 *
+	 * Helper method that sets the year quarter applied for.
+	 *
+	 * @since 1.0.0
+	 * @see Name_DOB_Model::$year_quarter_applied_for
+	 * @param string $year_quarter_applied_for The year quarter applied for.
+	 */
+	public function set_year_quarter_applied_for( $year_quarter_applied_for ) {
+		$this->year_quarter_applied_for = $year_quarter_applied_for;
 	}
 
 	/**
