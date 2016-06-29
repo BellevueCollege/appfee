@@ -75,9 +75,10 @@ class Form_Post_Model extends Default_Model {
 	public function __construct(
 		$template_uri,
 		$globals_configuration,
-		$form_post_url
+		$form_post_url,
+                $database_configuration
 	) {
-		parent::__construct( $template_uri, $globals_configuration );
+		parent::__construct( $template_uri, $globals_configuration,$database_configuration );
 		$this->set_form_post_url( $form_post_url );
 	}
 

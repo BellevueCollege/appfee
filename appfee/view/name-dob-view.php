@@ -69,5 +69,7 @@ class Name_DOB_View extends Form_Post_View {
 		$this->template_variables['student_middle_name'] =
 			$this->model->get_middle_name()
 		;
+                $this->template_variables['student_yrq'] = 
+                        $this->model->get_year_quarter_applied_for();
 	}
 }

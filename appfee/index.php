@@ -43,7 +43,8 @@ require( 'include/configuration-structures.php' );
  * @since 1.0.0
  * @var string
  */
-define( 'VERSION_NUMBER', '1.1' );
+
+define( 'VERSION_NUMBER', '1.2' );
 
 // Set the timezone.
 date_default_timezone_set( TIMEZONE );
@@ -89,12 +90,13 @@ switch ( $application_uri ) {
 			. 'general-admissions/program-of-study'
 		;
 		$resource_library_configuration = new HTML_Resource_Library();
-
+                $database_configuration = new Database_Configuration();
 		// Model view controller objects.
 		$model = new Form_Post_Model(
 			'template/student-name-dob-template.php',
 			$resource_library_configuration,
-			$post_url
+			$post_url,
+                        $database_configuration
 		);
 		$controller = NULL;
 		$view = new Form_Post_View( $controller, $model );
@@ -126,12 +128,13 @@ switch ( $application_uri ) {
 			. 'general-admissions/save'
 		;
 		$resource_library_configuration = new HTML_Resource_Library();
-
+                $database_configuration = new Database_Configuration();
 		// Model view controller objects.
 		$model = new Name_DOB_Model(
 			'template/program-of-study-template.php',
 			$resource_library_configuration,
-			$post_url
+			$post_url,
+                        $database_configuration
 		);
 		$controller = new Name_DOB_Controller( $model );
 		$view = new Name_DOB_View( $controller, $model );
@@ -188,11 +191,12 @@ switch ( $application_uri ) {
 
 		// Configuration objects.
 		$resource_library_configuration = new HTML_Resource_Library();
-
+                $database_configuration = new Database_Configuration();
 		// Model view controller objects.
 		$model = new Default_Model(
 			'template/error-404-template.php',
-			$resource_library_configuration
+			$resource_library_configuration,
+                        $database_configuration
 		);
 		$view = new Default_View( NULL, $model );
 
