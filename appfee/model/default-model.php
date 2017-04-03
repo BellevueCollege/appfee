@@ -123,7 +123,7 @@ class Default_Model {
         public function get_active_year_quarters()
         {
             try{
-			$active_yrq_sql = " EXEC usp_getActiveYearQuarter; "; 
+			$active_yrq_sql = " EXEC usp_getYearQuarterforAdmission; ";  //" EXEC usp_getActiveYearQuarter; "; Name of stored procedure changed 4/3/2017
 			$query = $this->database_connection->prepare($active_yrq_sql); 
 			$query->execute();			
 			$active_yrq_options = $query->fetchAll(PDO::FETCH_ASSOC);
